@@ -1,0 +1,79 @@
+﻿@model List<Sucursal>
+
+<div class="container py-5" style="background-color: rgba(218, 218, 218, 0.8);" data-aos="zoom-out-up" data-aos-duration="1200">
+    <div class="row align-items-center">
+
+        <div class="col-md-4 d-flex  flex-column align-items-center justify-content-center">
+            <img src="~/images/logo_erco_para_web-13.png" />
+        </div>
+
+        <div class="col-md-8 ps-md-5">
+            <h2 class="fst-italic fw-normal text-secondary mb-1" style="color: #333 !important;">
+                Emprendimientos Regionales Comerciales del Oeste S.R.L
+            </h2>
+
+            <div class="border-bottom border-danger border-3 mb-4" style="width: 100%; border-color: #b02a37 !important;"></div>
+
+            <div class="text-secondary fs-6" style="line-height: 1.6; color: #555 !important;">
+                <p>
+                    Carlos Alberto Inda, en el año 1987, en la ciudad de Luján, comienza con una pequeña distribución de golosinas y alimentos. Así nace <em>Distribuidora Cali</em>.
+                </p>
+                <p>
+                    En el año 1995, <strong>Bagley S.A.</strong> retira de la calle gran parte de su fuerza de venta y asigna a Distribuidora Cali su cartera de clientes en cuatro partidos de la Provincia de Buenos Aires.
+                </p>
+                <p>
+                    En el año 2000, <strong>Masalin Particulares S.A.</strong>, basándose en el desempeño de Distribuidora Cali en la zona, le ofrece a Carlos Inda la comercialización de sus productos en los partidos de Cañuelas, Lobos, Roque Perez, Saladillo y las localidades de Norberto de la Riestra y Pedernales. Así nace Del Sol Distribuciones dedicada exclusivamente a la distribución de cigarrillos.
+                </p>
+                <p class="mt-4">
+                    De esta manera, ambas distribuciones conforman <strong>Emprendimientos Regionales Comerciales del Oeste S.R.L.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5 d-flex justify-content-center align-items-center"
+     style="background-color: rgba(0, 0, 0, 0.0);">
+
+    <div class="row w-100" data-aos="zoom-in-left">
+        <div class="col-12 text-center">
+            <h2 class="fw-bold mb-3">¿Cómo trabajamos?</h2>
+            <p class="mb-5">
+                Contamos con un depósito propio, el cual está ubicado en la calle Leiva 939,
+                Ciudad de Luján, sobre 1885 mts2 con una superficie cubierta de 1500 mts2.
+            </p>
+
+            <h2 class="fw-bold mb-3">Nuestras sucursales</h2>
+            <h3 class="fw-bold mb-3">Principales</h3>
+            <div class="row row-cols-2 row-cols-md-4 g-4 mt-4 justify-content-center">
+
+                @foreach (var sucursal in Model)
+                {
+                    @if (sucursal.Estado != false && sucursal.Principal!=false)
+                    {
+                        <div class="col text-center">
+                            <div class="p-3 border-bottom border-danger border-2 bg-white shadow-sm rounded h-100 d-flex align-items-center justify-content-center">
+                                <a href="@sucursal.Ubicacion"><h6 class="mb-0 fw-bold">@sucursal.Nombre</h6></a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <br />
+            <h3 class="fw-bold mb-3">Secundarias</h3>
+            <div class="row row-cols-2 row-cols-md-4 g-4 mt-4 justify-content-center">
+                @foreach (var sucursal in Model)
+                {
+                    @if (sucursal.Estado != false && sucursal.Principal != true)
+                    {
+                        <div class="col text-center">
+                            <div class="p-3 border-bottom border-danger border-2 bg-white shadow-sm rounded h-100 d-flex align-items-center justify-content-center">
+                                <a href="@sucursal.Ubicacion"><h6 class="mb-0 fw-bold">@sucursal.Nombre</h6></a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

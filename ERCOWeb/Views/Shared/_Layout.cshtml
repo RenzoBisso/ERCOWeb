@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ERCOWeb</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ERCOWeb.styles.css" asp-append-version="true" />
+    <link href="~/lib/aos-master/aos-master/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+            <div class="container-fluid">
+
+                <a class="navbar-brand d-lg-none"
+                   href="javascript:void(0)"
+                   data-bs-toggle="collapse"
+                   data-bs-target="#menuPrincipal">
+                    <img src="/images/logo_erco_para_web-13.png" alt="Logo" width="50">
+                </a>
+
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#menuPrincipal"
+                        aria-controls="menuPrincipal"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="menuPrincipal">
+                    <ul class="navbar-nav align-items-center gap-lg-4 text-center">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Nosotros" asp-action="Index">NOSOTROS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">PRODUCTOS</a></li>
+
+                        <li class="nav-item d-none d-lg-block px-3">
+                            <img src="/images/logo_erco_para_web-13.png" alt="Logo ERCO" width="70" style="cursor: pointer;">
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link" href="#">SUCURSALES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">CONSULTAS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">OFERTAS</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container" >
+            &copy; 2026 - ERCOWeb
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/aos-master/aos-master/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
