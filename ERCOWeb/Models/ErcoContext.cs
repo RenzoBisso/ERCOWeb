@@ -93,6 +93,12 @@ public partial class ErcoContext : DbContext
 
             entity.Property(e => e.IdSucursal).HasColumnName("idSucursal");
             entity.Property(e => e.Estado).HasColumnName("estado");
+            entity.Property(e => e.Latitud)
+                .HasColumnType("decimal(18, 15)")
+                .HasColumnName("latitud");
+            entity.Property(e => e.Longitud)
+                .HasColumnType("decimal(18, 15)")
+                .HasColumnName("longitud");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsFixedLength()

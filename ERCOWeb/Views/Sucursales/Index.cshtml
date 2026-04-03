@@ -1,0 +1,61 @@
+﻿@model List<Sucursal>
+
+
+<div class=" container-fluid px-5 py-5" data-aos="flip-left" data-aos-duration="1200">
+    <div class="row align-items-center">
+
+        <div  class="col-md-6 d-flex  flex-column align-items-center justify-content-center">
+            <h2 class="fw-bold mb-3">Nuestras sucursales</h2>
+            <div class="row row-cols-2 row-cols-md-4 g-4 mt-4 justify-content-center">
+
+                @foreach (var sucursal in Model)
+                {
+                    @if (sucursal.Estado != false)
+                    {
+                        <div class="col text-center ">
+                            <div class="p-3 border-bottom border-radient border-2 bg-white shadow-sm rounded h-100 d-flex align-items-center justify-content-center">
+                                <a class="text-decoration-none text-reset" href="@sucursal.Ubicacion"><h6 class="mb-0 fw-bold ">@sucursal.Nombre</h6></a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div id="map" style="height:600px;" class="col-md-6 ps-md-5">
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var map = L.map('map').setView([-34.571418039118996, -59.093573187430934], 9);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+        var customIcon = L.icon({
+            iconUrl: '/images/logo_erco_para_web-13.png',
+            iconSize: [40, 40],
+            iconAnchor: [20, 20]
+        });
+            fetch('/Sucursales/GetSucursales')
+                .then(response => response.json())
+                .then(data => {
+
+                    data.forEach(s => {
+                        L.marker([s.lat, s.lng],{icon:customIcon})
+                            .addTo(map)
+                            .bindPopup(s.nombre);
+                    });
+
+                });
+
+        });
+    </script>
+}

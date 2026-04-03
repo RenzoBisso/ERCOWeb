@@ -14,4 +14,8 @@ public partial class Sucursal
     public string? Ubicacion { get; set; }
 
     public bool? Principal { get; set; }
+
+    public decimal? Latitud { get; set; }
+
+    public decimal? Longitud { get; set; }
 }

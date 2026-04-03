@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -20,3 +20,195 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+ul {
+    padding-left: 0;
+
+}
+
+
+.navbar a:hover {
+    color: #dfa12a;
+}
+
+.card-inicio {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out; 
+    cursor: pointer;
+}
+
+.card-inicio:hover {
+    transform: translateY(-10px); 
+    shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important; 
+    border: 1px solid rgba(223, 161, 42, 0.3); 
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+.navbar a{
+    color:black;
+    font-weight:500;
+}
+
+.border-radient {
+    border-bottom: 4px solid;
+    border-image-source: linear-gradient(to right, #af1c65, #dfa12a);
+    border-image-slice: 1;
+}
+.footer-custom ul li {
+    color: #dfa12a; 
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+    .footer-custom ul li i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    .footer-custom ul li a {
+        color: #dfa12a;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .footer-custom ul li a:hover {
+            color: #b07d1e; 
+            text-decoration: underline;
+        }
+
+.border-gradient-bottom {
+    display: inline-block; 
+    position: relative;
+    padding-bottom: 5px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+    .border-gradient-bottom::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(to right, #af1c65, #dfa12a);
+        border-radius: 2px;
+    }
+
+.contact-list li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-list a {
+    text-decoration: none;
+    color: #0d6efd;
+    transition: color 0.3s ease;
+}
+
+    .contact-list a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+.link-whatsapp:hover {
+    color: #25d366 !important;
+}
+
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .whatsapp-btn img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .whatsapp-btn:hover {
+        background-color: #128c7e;
+        transition: 0.3s;
+    }
+
+.contact-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-control {
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+}
+
+    .form-control:focus {
+        background-color: #fff;
+        box-shadow: 0 0 0 0.25 margin-left rgba(223, 170, 48, 0.25);
+        border-color: #dfaa30;
+    }
+
+.btn-submit {
+    background-color: #dfaa30; 
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    transition: background 0.3s;
+}
+
+    .btn-submit:hover {
+        background-color: #c99828;
+    }
+
+.divider-colors {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+    .divider-colors span {
+        height: 4px;
+        width: 30px;
+        border-radius: 2px;
+    }
+
+        .divider-colors span:nth-child(1) {
+            background-color: #dfaa30;
+        }
+        .divider-colors span:nth-child(2) {
+            background-color: #c2185b;
+        }
+        .divider-colors span:nth-child(3) {
+            background-color: #e64a19;
+        }
+        .divider-colors span:nth-child(4) {
+            background-color: #37474f;
+        }
+.form-control:focus {
+    border-color: #dfaa30; 
+    box-shadow: 0 0 0 0.25rem rgba(223, 170, 48, 0.25); 
+    outline: 0;
+}
+

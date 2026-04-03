@@ -1,0 +1,60 @@
+﻿@using ERCOWeb.Models.ViewModels
+@model FormViewModel
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="contact-card">
+                <h2 class="text-center fw-bold">Contáctanos</h2>
+                <div class="divider-colors mb-3">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <p class="text-center text-muted mb-4">Completa el formulario y te responderemos a la brevedad.</p>
+
+                <form asp-action="Enviar" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Nombre" class="form-label fw-bold">Nombre</label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Tu nombre" />
+                            <span asp-validation-for="Nombre" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Apellido" class="form-label fw-bold">Apellido</label>
+                            <input asp-for="Apellido" class="form-control" placeholder="Tu apellido" />
+                            <span asp-validation-for="Apellido" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Telefono" class="form-label fw-bold">Teléfono</label>
+                            <input asp-for="Telefono" class="form-control" placeholder="+54 11 1234-5678" />
+                            <span asp-validation-for="Telefono" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Localidad" class="form-label fw-bold">Localidad</label>
+                            <input asp-for="Localidad" class="form-control" placeholder="Tu localidad" />
+                            <span asp-validation-for="Localidad" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Dirección de Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="tu@email.com" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Mensaje" class="form-label fw-bold">Mensaje</label>
+                        <textarea asp-for="Mensaje" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+                        <span asp-validation-for="Mensaje" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit w-100 py-2 fw-bold text-white">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,13 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ERCOWeb</title>
+    <title>ERCO-Distribuidora</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ERCOWeb.styles.css" asp-append-version="true" />
     <link href="~/lib/aos-master/aos-master/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
 </head>
 <body>
+    <a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21&type=phone_number&app_absent=0" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat con nosotros">
+    </a>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
             <div class="container-fluid">
@@ -32,16 +42,18 @@
 
                 <div class="collapse navbar-collapse justify-content-center" id="menuPrincipal">
                     <ul class="navbar-nav align-items-center gap-lg-4 text-center">
+
+                        <li class="nav-item d-none d-lg-block px-3">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <img src="/images/width_459.webp" alt="Logo ERCO" width="200" style="cursor: pointer;">
+                            </a>
+                        </li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">INICIO</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Nosotros" asp-action="Index">NOSOTROS</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">PRODUCTOS</a></li>
 
-                        <li class="nav-item d-none d-lg-block px-3">
-                            <img src="/images/logo_erco_para_web-13.png" alt="Logo ERCO" width="70" style="cursor: pointer;">
-                        </li>
-
-                        <li class="nav-item"><a class="nav-link" href="#">SUCURSALES</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">CONSULTAS</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Sucursales" asp-action="Index">SUCURSALES</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Consultas" asp-action="Index">CONSULTAS</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">OFERTAS</a></li>
                     </ul>
                 </div>
@@ -49,21 +61,49 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid px-0 ">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container" >
-            &copy; 2026 - ERCOWeb
+    <footer class="footer-custom border-top py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="border-gradient-bottom mb-4">Contacto</h3>
+                    <ul class="list-unstyled contact-list">
+                        <li><i class="bi bi-geo-alt"></i> Leiva 939, Luján</li>
+                        <li>
+                            <a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21&type=phone_number&app_absent=0" target="_blank" class="link-whatsapp">
+                                <i class="bi bi-whatsapp"></i>  Escribinos por WhatsApp
+                            </a>
+                        </li>
+                        <li>
+                            <a  class="link-email" asp-controller="Consultas" asp-action="Index">
+                                <i class="bi bi-envelope"></i>  distribuidoracali@ercosrl.com.ar
+                            </a>
+                        </li>
+                        <li><i class="bi bi-telephone-fill"></i> 02323 426913 (Int. 17)</li>
+                        <li><i class="bi bi-telephone-fill"></i> 02323 428473 (Int. 17)</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 text-md-end d-flex flex-column justify-content-end">
+                    <p class="mb-0 text-muted">&copy; 2026 - <strong>ERCO</strong></p>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/aos-master/aos-master/dist/aos.js"></script>
+    <script src="~/lib/leaflet/leaflet.js"></script>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
     <script>
         AOS.init();
     </script>
