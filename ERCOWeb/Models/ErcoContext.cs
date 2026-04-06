@@ -23,6 +23,8 @@ public partial class ErcoContext : DbContext
 
     public virtual DbSet<Sucursal> Sucursals { get; set; }
 
+    public virtual DbSet<Zona> Zonas { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=Renzo-PC\\SQLEXPRESS;Database=ERCO;Trusted_Connection=True;TrustServerCertificate=True");
@@ -105,6 +107,20 @@ public partial class ErcoContext : DbContext
                 .HasColumnName("nombre");
             entity.Property(e => e.Principal).HasColumnName("principal");
             entity.Property(e => e.Ubicacion).HasColumnName("ubicacion");
+        });
+
+        modelBuilder.Entity<Zona>(entity =>
+        {
+            entity.HasKey(e => e.IdZona).HasName("PK_Zona");
+
+            entity.ToTable("ZONA");
+
+            entity.Property(e => e.IdZona).HasColumnName("idZona");
+            entity.Property(e => e.Estado).HasColumnName("estado");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsFixedLength()
+                .HasColumnName("nombre");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -1,14 +1,14 @@
-﻿@model List<Sucursal>
+﻿@model (List<ERCOWeb.Models.Sucursal> sucursales, List<ERCOWeb.Models.Zona> zonas)
 
 
-<div class=" container-fluid px-5 py-5" data-aos="flip-left" data-aos-duration="1200">
+<div class=" container-fluid px-5 py-5" data-aos="zoom-in" data-aos-duration="1200">
     <div class="row align-items-center">
 
         <div  class="col-md-6 d-flex  flex-column align-items-center justify-content-center">
             <h2 class="fw-bold mb-3">Nuestras sucursales</h2>
             <div class="row row-cols-2 row-cols-md-4 g-4 mt-4 justify-content-center">
 
-                @foreach (var sucursal in Model)
+                @foreach (var sucursal in Model.sucursales)
                 {
                     @if (sucursal.Estado != false)
                     {
@@ -22,11 +22,49 @@
             </div>
         </div>
 
-        <div id="map" style="height:600px;" class="col-md-6 ps-md-5">
+        <div id="map" style="height:600px;" class="col-md-6 ps-md-5 rounded-4 shadow-lg border">
 
         </div>
     </div>
 </div>
+
+
+<div class="container-fluid px-5 py-5" data-aos="zoom-in" data-aos-duration="1200">
+    <div class="row align-items-stretch">
+
+        <div class="col-md-6 pe-md-5 mb-5 mb-md-0">
+            <div id="map-section" class="rounded-4 shadow-lg border" style="height: 550px; width: 100%; position: sticky; top: 20px;">
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+            <div class="text-center text-md-start mb-4">
+                <h2 class="fw-bold mb-3">Zonas a las que llegamos</h2>
+                <p class="text-muted">Cubrimos una amplia red para estar siempre cerca tuyo.</p>
+            </div>
+
+            <div class="row g-3 justify-content-center justify-content-md-start">
+                @foreach (var zona in Model.zonas)
+                {
+                    <div class="col-3">
+                        <div class="p-4 border rounded text-center custom-zona-card h-100 d-flex align-items-center justify-content-center shadow-sm bg-white">
+                            <span class="fw-semibold">@zona.Nombre</span>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 text-center text-md-start">
+                    <p class="text-muted small">* Consultar por entregas en otras localidades no listadas.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 
 
 @section Scripts {
@@ -34,27 +72,49 @@
         document.addEventListener("DOMContentLoaded", function () {
 
             var map = L.map('map').setView([-34.571418039118996, -59.093573187430934], 9);
-
+            var map_section = L.map('map-section').setView([-34.571418039118996, -59.093573187430934], 9);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap'
             }).addTo(map);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(map_section);
 
-        var customIcon = L.icon({
-            iconUrl: '/images/logo_erco_para_web-13.png',
-            iconSize: [40, 40],
-            iconAnchor: [20, 20]
-        });
+            var customIcon = L.icon({
+                iconUrl: '/images/logo_erco_para_web-13.png',
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
+            });
+
             fetch('/Sucursales/GetSucursales')
                 .then(response => response.json())
                 .then(data => {
-
                     data.forEach(s => {
-                        L.marker([s.lat, s.lng],{icon:customIcon})
+                        L.marker([s.lat, s.lng], { icon: customIcon })
                             .addTo(map)
                             .bindPopup(s.nombre);
                     });
+                })
+                .catch(err => console.error("Error sucursales:", err));
 
-                });
+            fetch('/zonas/zonas.json')
+                .then(response => response.json())
+                .then(geojsonData => {
+                    L.geoJSON(geojsonData, {
+                        style: function(feature) {
+                            return {
+                                color: '#cb297b',
+                                weight: 2,
+                                fillOpacity: 0.2
+                            };
+                        },
+                        onEachFeature: function(feature, layer) {
+                            var nombreZona = (feature.properties && feature.properties.nombre) ? feature.properties.nombre : "Sin nombre";
+                            layer.bindPopup("<b>Zona:</b> " + nombreZona);
+                        }
+                    }).addTo(map_section);
+                })
+                .catch(err => console.error("Error zonas:", err));
 
         });
     </script>

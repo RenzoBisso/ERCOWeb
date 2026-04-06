@@ -16,7 +16,12 @@ namespace ERCOWeb.Controllers
         }
         public async Task<IActionResult> IndexAsync()
         {
-            return View(await _context.Sucursals.ToListAsync());
+            var listaSucursales = await _context.Sucursals.ToListAsync();
+            var listaZonas = await _context.Zonas.ToListAsync(); 
+
+            var modeloTupla = (sucursales: listaSucursales, zonas: listaZonas);
+
+            return View(modeloTupla);
         }
         [HttpGet]
         public JsonResult GetSucursales()
