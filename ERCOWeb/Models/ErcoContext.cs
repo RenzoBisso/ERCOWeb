@@ -53,7 +53,9 @@ public partial class ErcoContext : DbContext
 
             entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.Estado).HasColumnName("estado");
-            entity.Property(e => e.Imagen).HasColumnName("imagen");
+            entity.Property(e => e.Imagen)
+                .IsUnicode(false)
+                .HasColumnName("imagen");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .IsFixedLength()

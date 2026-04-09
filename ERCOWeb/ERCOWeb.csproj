@@ -21,6 +21,10 @@
     <None Include="Views\Nosotros\Index.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\marcas\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties libman_1json__JsonSchema="unpkg" /></VisualStudio></ProjectExtensions>
 
 </Project>

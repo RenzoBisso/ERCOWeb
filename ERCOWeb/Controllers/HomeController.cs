@@ -1,21 +1,27 @@
 using System.Diagnostics;
 using ERCOWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ERCOWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly  ErcoContext _context;
+        public HomeController(ILogger<HomeController> logger,ErcoContext ercoContext)
         {
             _logger = logger;
+            _context = ercoContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var listaMarcasFiltradas = await _context.Marcas
+                .Where(m => m.Estado == true)
+                .ToListAsync();
+
+            return View(listaMarcasFiltradas);
         }
 
 
@@ -24,5 +30,7 @@ namespace ERCOWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

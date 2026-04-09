@@ -9,7 +9,7 @@ public partial class Marca
 
     public string Nombre { get; set; } = null!;
 
-    public byte[] Imagen { get; set; } = null!;
+    public string Imagen { get; set; } = null!;
 
     public bool Estado { get; set; }
 
