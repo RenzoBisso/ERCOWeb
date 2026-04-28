@@ -1,91 +1,81 @@
+
+/* =============================================================================
+   1. VARIABLES GLOBALES
+   ============================================================================= */
+
+:root {
+    --primary-dark: #3e3f3f;
+    --accent-gold: #dfa12a;
+    --accent-pink: #c02873;
+    --accent-orange: #ca5e40;
+    --accent-blue: #1b6ec2;
+}
+
+
+/* =============================================================================
+   2. BASE / RESET
+   ============================================================================= */
+
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 ul {
     padding-left: 0;
-
 }
 
-
-.navbar a:hover {
-    color: #dfa12a;
+/* Proveniente de _Layout.cshtml.css */
+a {
+    color: #0077cc;
 }
 
-.card-inicio {
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out; 
-    cursor: pointer;
-}
+    a.navbar-brand {
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+    }
 
-.card-inicio:hover {
-    transform: translateY(-10px); 
-    shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important; 
-    border: 1px solid rgba(223, 161, 42, 0.3); 
-}
+
+/* =============================================================================
+   3. UTILIDADES GENERALES
+   ============================================================================= */
 
 .text-shadow {
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
-.navbar a{
-    color:black;
-    font-weight:500;
+
+.box-shadow {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .border-radient {
     border-bottom: 4px solid;
-    border-image-source: linear-gradient(to right, #af1c65, #dfa12a);
+    border-image-source: linear-gradient(to right, #af1c65, var(--accent-gold));
     border-image-slice: 1;
 }
-.footer-custom ul li {
-    color: #dfa12a; 
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-    .footer-custom ul li i {
-        margin-right: 10px;
-        font-size: 1.1rem;
-        opacity: 0.9;
-    }
-
-    .footer-custom ul li a {
-        color: #dfa12a;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-        .footer-custom ul li a:hover {
-            color: #b07d1e; 
-            text-decoration: underline;
-        }
 
 .border-gradient-bottom {
-    display: inline-block; 
+    display: inline-block;
     position: relative;
     padding-bottom: 5px;
     font-size: 1.5rem;
@@ -99,80 +89,8 @@ ul {
         bottom: 0;
         width: 100%;
         height: 3px;
-        background: linear-gradient(to right, #af1c65, #dfa12a);
+        background: linear-gradient(to right, #af1c65, var(--accent-gold));
         border-radius: 2px;
-    }
-
-.contact-list li {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-}
-
-.contact-list a {
-    text-decoration: none;
-    color: #0d6efd;
-    transition: color 0.3s ease;
-}
-
-    .contact-list a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
-
-.link-whatsapp:hover {
-    color: #25d366 !important;
-}
-
-.whatsapp-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-    .whatsapp-btn img {
-        width: 55px;
-        height: 55px;
-    }
-
-
-.contact-card {
-    background: #fff;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.form-control {
-    border-radius: 10px;
-    background-color: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    padding: 10px 15px;
-}
-
-    .form-control:focus {
-        background-color: #fff;
-        box-shadow: 0 0 0 0.25 margin-left rgba(223, 170, 48, 0.25);
-        border-color: #dfaa30;
-    }
-
-.btn-submit {
-    background-color: #dfaa30; 
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    transition: background 0.3s;
-}
-
-    .btn-submit:hover {
-        background-color: #c99828;
     }
 
 .divider-colors {
@@ -190,142 +108,207 @@ ul {
         .divider-colors span:nth-child(1) {
             background-color: #dfaa30;
         }
+
         .divider-colors span:nth-child(2) {
             background-color: #c2185b;
         }
+
         .divider-colors span:nth-child(3) {
             background-color: #e64a19;
         }
+
         .divider-colors span:nth-child(4) {
             background-color: #37474f;
         }
-.form-control:focus {
-    border-color: #dfaa30; 
-    box-shadow: 0 0 0 0.25rem rgba(223, 170, 48, 0.25); 
-    outline: 0;
+
+
+/* =============================================================================
+   4. FOCUS / ACCESIBILIDAD
+   ============================================================================= */
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+
+/* =============================================================================
+   5. NAVBAR
+   ============================================================================= */
+
+.navbar a {
+    color: black;
+    font-weight: 500;
+}
+
+    .navbar a:hover {
+        color: var(--accent-gold);
+    }
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+    }
+}
+
+
+/* =============================================================================
+   6. BOTONES
+   ============================================================================= */
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--accent-blue);
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: var(--accent-blue);
+    border-color: #1861ac;
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+.btn-submit {
+    background-color: #dfaa30;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    transition: background 0.3s;
+}
+
+    .btn-submit:hover {
+        background-color: #c99828;
+    }
+
+/* Botón principal canal WPP (desde _Layout inline) */
+.btn-lg:hover {
+    background-color: #a01d5d !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(192, 40, 115, 0.4) !important;
+}
+
+.btn-light:hover.hover-warning {
+    background-color: #fff3cd !important;
+    border-color: #ffecb5 !important;
+}
+
+.btn-light:hover.hover-danger {
+    background-color: #f8d7da !important;
+    border-color: #f5c2c7 !important;
+}
+
+
+/* =============================================================================
+   7. FORMULARIOS
+   ============================================================================= */
+
+.form-control {
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+}
+
+    .form-control:focus {
+        background-color: #fff;
+        border-color: #dfaa30;
+        box-shadow: 0 0 0 0.25rem rgba(223, 170, 48, 0.25);
+        outline: 0;
+    }
+
+
+/* =============================================================================
+   8. CARDS
+   ============================================================================= */
+
+.card {
+    border-radius: 1rem;
+}
+
+/* Card inicio (Home) */
+.card-inicio {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+    .card-inicio:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+        border: 1px solid rgba(223, 161, 42, 0.3);
+    }
+
+/* Card contacto */
+.contact-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Card zonas/sucursales */
 .custom-zona-card {
     transition: all 0.3s ease;
     background-color: #f8f9fa;
+    animation: fadeIn 0.5s ease forwards;
 }
 
     .custom-zona-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-        border-bottom: 3px solid #cb297b !important; 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+        border-bottom: 3px solid #cb297b !important;
         background-color: #fff;
     }
 
-.icon-circle {
-    width: 35px;
-    height: 35px;
-    background-color: rgba(203, 41, 123, 0.1); 
-    color: #cb297b;
-    border-radius: 50%;
+/* Card productos */
+.card-producto {
+    border: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+    .card-producto:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+
+/* Card marcas */
+.brand-card {
+    transition: all 0.3s ease;
+    background-color: #fff;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
 }
 
-.custom-zona-card {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+    .brand-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+        border-color: var(--accent-pink) !important;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-}
-
-.marquee-content {
-    display: inline-block;
-    animation: scroll 20s linear infinite;
-}
-
-    .marquee-content img {
-        height: 50px;
-        margin: 0 40px;
-    }
-
-@keyframes scroll {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-
-
-}
-.logo-animation-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    transition: opacity 0.8s ease;
-    z-index: 9999;
-}
-
-.logo-symbol {
-    width: 150px;
-    transform: scale(0); 
-    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-}
-
-.logo-text-container {
-    width: 0;
-    opacity: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    transition: width 1s ease, opacity 0.5s ease;
-    margin-top: 20px;
-}
-
-.logo-text {
-    width: 180px;
-}
-
-
-.start-anim .logo-symbol {
-    transform: scale(1); 
-}
-
-.start-anim .logo-text-container {
-    width: 180px;
-    opacity: 1;
-    transition-delay: 0.8s; 
-}
-
-.logo-animation-container.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.logo-animation-container.no-animation {
-    display: none;
-}
+/* Card admin */
 .admin-card {
     border: none;
     border-radius: 12px;
@@ -336,8 +319,52 @@ ul {
 
     .admin-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
+
+.card-title {
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #1f2937;
+}
+
+.card-text {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+
+/* =============================================================================
+   9. LOGOS / IMÁGENES
+   ============================================================================= */
+
+.brand-logo {
+    max-height: 70px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.brand-card:hover .brand-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+
+/* =============================================================================
+   10. ÍCONOS Y ELEMENTOS DECORATIVOS
+   ============================================================================= */
+
+.icon-circle {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(203, 41, 123, 0.1);
+    color: #cb297b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
 
 .icon-box {
     width: 60px;
@@ -375,51 +402,249 @@ ul {
     background-color: #0891b2;
 }
 
-.card-title {
-    font-weight: 600;
-    margin-bottom: 0;
-    color: #1f2937;
-}
-
-.card-text {
-    color: #6b7280;
-    font-size: 0.9rem;
-}
-
 .bg-success-soft {
     background-color: rgba(25, 135, 84, 0.1);
 }
 
+
+/* =============================================================================
+   11. BOTÓN / BADGE DE PRODUCTOS
+   ============================================================================= */
+
+.btn-detalle {
+    background-color: var(--accent-gold);
+    color: white;
+    border-radius: 50px;
+    border: none;
+    padding: 8px 20px;
+}
+
+    .btn-detalle:hover {
+        background-color: var(--primary-dark);
+        color: white;
+    }
+
+.badge-marca {
+    color: var(--accent-orange);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.filtro-side {
+    border-right: 1px solid #eee;
+}
+
+
+/* =============================================================================
+   12. CONTACTO
+   ============================================================================= */
+
+.contact-list li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-list a {
+    text-decoration: none;
+    color: #0d6efd;
+    transition: color 0.3s ease;
+}
+
+    .contact-list a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+.link-whatsapp:hover {
+    color: #25d366 !important;
+}
+
+.link-email {
+    text-decoration: none;
+}
+
+
+/* =============================================================================
+   13. BOTÓN FLOTANTE WHATSAPP
+   ============================================================================= */
+
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .whatsapp-btn img {
+        width: 55px;
+        height: 55px;
+    }
+
+
+/* =============================================================================
+   14. FOOTER
+   ============================================================================= */
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.footer-custom ul li {
+    color: var(--accent-gold);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+    .footer-custom ul li i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    .footer-custom ul li a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .footer-custom ul li a:hover {
+            color: #b07d1e;
+            text-decoration: underline;
+        }
+
+
+/* =============================================================================
+   15. TABLAS (ADMIN)
+   ============================================================================= */
+
 .table-hover tbody tr:hover {
-    background-color: rgba(0,0,0,0.01);
+    background-color: rgba(0, 0, 0, 0.01);
     transition: 0.3s;
 }
 
-.btn-light:hover.hover-warning {
-    background-color: #fff3cd !important;
-    border-color: #ffecb5 !important;
+
+/* =============================================================================
+   16. MARQUEE / SLIDER DE MARCAS
+   ============================================================================= */
+
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
 }
 
-.btn-light:hover.hover-danger {
-    background-color: #f8d7da !important;
-    border-color: #f5c2c7 !important;
+.marquee-content {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
 }
 
-.card {
-    border-radius: 1rem;
-}
-
-@media (max-width: 991px) {
-    .navbar-collapse {
-        background-color: #fff;
-        padding: 1rem;
-        border-radius: 8px;
-        margin-top: 10px;
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    .marquee-content img {
+        height: 50px;
+        margin: 0 40px;
     }
 
-    .nav-item {
-        border-bottom: 1px solid #eee;
-        padding: 10px 0;
+@keyframes scroll {
+    from {
+        transform: translateX(0);
     }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* =============================================================================
+   17. ANIMACIÓN DE LOGO (splash intro)
+   ============================================================================= */
+
+.logo-animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    transition: opacity 0.8s ease;
+    z-index: 9999;
+}
+
+.logo-symbol {
+    width: 150px;
+    transform: scale(0);
+    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-text-container {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 1s ease, opacity 0.5s ease;
+    margin-top: 20px;
+}
+
+.logo-text {
+    width: 180px;
+}
+
+.start-anim .logo-symbol {
+    transform: scale(1);
+}
+
+.start-anim .logo-text-container {
+    width: 180px;
+    opacity: 1;
+    transition-delay: 0.8s;
+}
+
+.logo-animation-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.logo-animation-container.no-animation {
+    display: none;
+}
+
+
+/* =============================================================================
+   18. ANIMACIONES GENERALES
+   ============================================================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.admin-page #canal-wpp {
+    display: none !important;
 }
