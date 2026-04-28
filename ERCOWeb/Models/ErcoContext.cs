@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore; 
+using Microsoft.AspNetCore.Identity; 
 
 namespace ERCOWeb.Models;
 
-public partial class ErcoContext : DbContext
+public partial class ErcoContext : IdentityDbContext<IdentityUser>
 {
     public ErcoContext()
     {
@@ -16,27 +18,21 @@ public partial class ErcoContext : DbContext
     }
 
     public virtual DbSet<Categorium> Categoria { get; set; }
-
     public virtual DbSet<Marca> Marcas { get; set; }
-
     public virtual DbSet<Producto> Productos { get; set; }
-
+    public virtual DbSet<Promo> Promos { get; set; }
     public virtual DbSet<Sucursal> Sucursals { get; set; }
-
+    public virtual DbSet<Usuario> Usuarios { get; set; }
     public virtual DbSet<Zona> Zonas { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=Renzo-PC\\SQLEXPRESS;Database=ERCO;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Categorium>(entity =>
         {
             entity.HasKey(e => e.IdCategoria);
-
             entity.ToTable("CATEGORIA");
-
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.Nombre)
@@ -48,35 +44,23 @@ public partial class ErcoContext : DbContext
         modelBuilder.Entity<Marca>(entity =>
         {
             entity.HasKey(e => e.IdMarca);
-
             entity.ToTable("MARCA");
-
             entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.Estado).HasColumnName("estado");
-            entity.Property(e => e.Imagen)
-                .IsUnicode(false)
-                .HasColumnName("imagen");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(50)
-                .IsFixedLength()
-                .HasColumnName("nombre");
+            entity.Property(e => e.Imagen).IsUnicode(false).HasColumnName("imagen");
+            entity.Property(e => e.Nombre).HasMaxLength(50).IsFixedLength().HasColumnName("nombre");
         });
 
         modelBuilder.Entity<Producto>(entity =>
         {
             entity.HasKey(e => e.IdProducto).HasName("PK_Tabla1");
-
             entity.ToTable("PRODUCTO");
-
             entity.Property(e => e.IdProducto).HasColumnName("idProducto");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
             entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.Imagen).HasColumnName("imagen");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(50)
-                .IsFixedLength()
-                .HasColumnName("nombre");
+            entity.Property(e => e.Nombre).HasMaxLength(50).IsFixedLength().HasColumnName("nombre");
 
             entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.IdCategoria)
@@ -89,40 +73,47 @@ public partial class ErcoContext : DbContext
                 .HasConstraintName("FK_Tabla1_Tabla1");
         });
 
+        modelBuilder.Entity<Promo>(entity =>
+        {
+            entity.ToTable("PROMO");
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Descripcion).IsUnicode(false).HasColumnName("descripcion");
+            entity.Property(e => e.FechaFin).HasColumnName("fecha_fin");
+            entity.Property(e => e.FechaInicio).HasColumnName("fecha_inicio");
+            entity.Property(e => e.Imagen).IsUnicode(false).HasColumnName("imagen");
+            entity.Property(e => e.Pdf).IsUnicode(false).HasColumnName("pdf");
+            entity.Property(e => e.Titulo).HasMaxLength(50).IsUnicode(false).HasColumnName("titulo");
+        });
+
         modelBuilder.Entity<Sucursal>(entity =>
         {
             entity.HasKey(e => e.IdSucursal);
-
             entity.ToTable("SUCURSAL");
-
             entity.Property(e => e.IdSucursal).HasColumnName("idSucursal");
             entity.Property(e => e.Estado).HasColumnName("estado");
-            entity.Property(e => e.Latitud)
-                .HasColumnType("decimal(18, 15)")
-                .HasColumnName("latitud");
-            entity.Property(e => e.Longitud)
-                .HasColumnType("decimal(18, 15)")
-                .HasColumnName("longitud");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(100)
-                .IsFixedLength()
-                .HasColumnName("nombre");
+            entity.Property(e => e.Latitud).HasColumnType("decimal(18, 15)").HasColumnName("latitud");
+            entity.Property(e => e.Longitud).HasColumnType("decimal(18, 15)").HasColumnName("longitud");
+            entity.Property(e => e.Nombre).HasMaxLength(100).IsFixedLength().HasColumnName("nombre");
             entity.Property(e => e.Principal).HasColumnName("principal");
             entity.Property(e => e.Ubicacion).HasColumnName("ubicacion");
+        });
+
+        modelBuilder.Entity<Usuario>(entity =>
+        {
+            entity.ToTable("USUARIO");
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Email).HasMaxLength(100).IsUnicode(false).HasColumnName("email");
+            entity.Property(e => e.Estado).HasColumnName("estado");
+            entity.Property(e => e.Nombre).HasMaxLength(50).IsUnicode(false).HasColumnName("nombre");
         });
 
         modelBuilder.Entity<Zona>(entity =>
         {
             entity.HasKey(e => e.IdZona).HasName("PK_Zona");
-
             entity.ToTable("ZONA");
-
             entity.Property(e => e.IdZona).HasColumnName("idZona");
             entity.Property(e => e.Estado).HasColumnName("estado");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(50)
-                .IsFixedLength()
-                .HasColumnName("nombre");
+            entity.Property(e => e.Nombre).HasMaxLength(50).IsFixedLength().HasColumnName("nombre");
         });
 
         OnModelCreatingPartial(modelBuilder);

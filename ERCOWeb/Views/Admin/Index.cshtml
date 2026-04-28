@@ -1,0 +1,116 @@
+﻿
+<style>
+    footer {
+        display: none !important;
+    }
+    #canal-wpp{
+        display :none !important;
+    }
+</style>
+<div class="container py-5">
+    <div class="mb-5">
+        <h2 class="fw-bold">Panel de Administración</h2>
+        <p class="text-muted">Selecciona una sección para gestionar</p>
+        <hr class="opacity-10">
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <a asp-controller="Admin" asp-action="Productos" >
+            <div class="card admin-card p-3 shadow-sm">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-productos">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <div>
+                        <h5 class="card-title">Productos</h5>
+                        <p class="card-text">Gestionar productos</p>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <a asp-controller="Admin" asp-action="Sucursales" >
+            <div class="card admin-card p-3 shadow-sm">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-sucursales">
+                        <i class="bi bi-buildings"></i>
+                    </div>
+                    <div>
+                        <h5 class="card-title">Sucursales</h5>
+                        <p class="card-text">Gestionar sucursales</p>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <a asp-controller="Admin" asp-action="Promos" >
+                <div class="card admin-card p-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box bg-promos">
+                            <i class="bi bi-percent"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title">Promos</h5>
+                            <p class="card-text">Gestionar promos</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+             <a asp-controller="Admin" asp-action="Marcas" >
+            <div class="card admin-card p-3 shadow-sm">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-marca">
+                        <i class="bi bi-tag"></i>
+                    </div>
+                    <div>
+                        <h5 class="card-title">Marca</h5>
+                        <p class="card-text">Gestionar marca</p>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <a asp-controller="Admin" asp-action="Categorias" >
+            <div class="card admin-card p-3 shadow-sm">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-categoria">
+                        <i class="bi bi-layers"></i>
+                    </div>
+                    <div>
+                        <h5 class="card-title">Categoría</h5>
+                        <p class="card-text">Gestionar categoría</p>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <a asp-controller="Admin" asp-action="Usuarios">
+                <div class="card admin-card p-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box bg-categoria">
+                            <i class="bi bi-layers"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title">Usuarios</h5>
+                            <p class="card-text">Gestionar Usuarios</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

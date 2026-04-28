@@ -1,0 +1,62 @@
+﻿<style>
+    footer {
+        display: none !important;
+    }
+
+    #canal-wpp {
+        display: none !important;
+    }
+</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Cargar Promo</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CargarPromo" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" name="Id" />
+
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label font-weight-bold">Título</label>
+                            <input type="text" class="form-control" id="titulo" name="Titulo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="Descripcion" rows="3"></textarea>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                                <input type="date" class="form-control" id="fecha_inicio" name="FechaInicio"  required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+                                <input type="date" class="form-control" id="fecha_fin" name="FechaFin"  required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="archivoPdf" class="form-label font-weight-bold">Documento PDF</label>
+                                <input class="form-control" type="file" id="archivoPdf" name="archivoPdf" accept=".pdf">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="image" class="form-label font-weight-bold">Imagen</label>
+                                <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+                            <button type="submit" class="btn btn-primary px-5">Cargar Promo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

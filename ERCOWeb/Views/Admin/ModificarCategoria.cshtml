@@ -1,0 +1,49 @@
+﻿<style>
+    footer {
+        display: none !important;
+    }
+
+    #canal-wpp {
+        display: none !important;
+    }
+</style>
+@model Categorium
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-dark text-white p-4">
+                    <h4 class="mb-0"><i class="bi bi-tag-fill me-2"></i>Modificar Marca</h4>
+                    <p class="mb-0 small opacity-75">Modifique una marca que este en el sistema.</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-controller="Admin" asp-action="ModificarCategoria" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" asp-for="IdCategoria" />
+
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label fw-bold">Nombre de la Marca</label>
+                            <input asp-for="Nombre" class="form-control form-control-lg" value="@Model.Nombre" placeholder="Ej: Arcor, Coca-Cola..." required>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input type="checkbox" class="form-check-input" asp-for="Estado" role="switch" />
+                                <label class="form-check-label fw-bold" for="estado">Marca Activa</label>
+                            </div>
+                            <small class="text-muted">Si se desactiva, no aparecerá en los filtros de la web.</small>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 border-top pt-3">
+                            <a asp-action="Marcas" class="btn btn-outline-secondary px-4 rounded-pill">Cancelar</a>
+                            <button type="submit" class="btn btn-dark px-5 rounded-pill shadow-sm">
+                                <i class="bi bi-check-lg me-2"></i>Modificar Categoria
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

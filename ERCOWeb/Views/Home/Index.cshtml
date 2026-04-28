@@ -1,18 +1,19 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Distribuidora Cali | Centro de Distribución Luján y Zonas de Entrega";
+    ViewData["Description"] = "Distribuidora mayorista con centro en Luján. Abastecemos comercios en Mercedes, Chivilcoy, Cañuelas, General Rodríguez y más de 15 localidades.";
 }
 @model List<Marca>
 
 <div class="logo-animation-container">
-    <img src="~/images/logo.svg" alt="Símbolo ERCO" class="logo-symbol">
+    <img src="~/images/erco/logo.svg" alt="Símbolo ERCO" class="logo-symbol">
 
     <div class="logo-text-container">
-        <img src="~/images/nombre.svg" alt="ERCO" class="logo-text">
+        <img src="~/images/erco/nombre.svg" alt="ERCO" class="logo-text">
     </div>
 </div>
 
 <div data-aos="zoom-in-up" data-aos-duration="1500" class="container-fluid px-0 py-5 d-flex align-items-center justify-content-center text-center"
-     style="background-image: url('@Url.Content("~/images/fondo_gradiente.jpg")'); background-size: cover; background-position: center; min-height: 400px;">
+     style="background-image: url('@Url.Content("~/images/erco/fondo_gradiente.jpg")'); background-size: cover; background-position: center; min-height: 400px;">
     <div>
         <h2 class="text-light text-shadow">
             ERCO: Distribuidora Mayorista.<br>
@@ -27,24 +28,37 @@
 
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card card-inicio border-0 shadow-lg text-center h-100">
-                <div class="card-body p-5">
-                    <div style="color: #c02873;" class="mb-3"><i class="bi bi-tags fs-1"></i></div>
-                    <h4 class="fw-bold">OFERTAS</h4>
-                    <p class="text-muted">Precios exclusivos y promociones semanales que no podés dejar pasar.</p>
-                </div>
+                <a class="text-decoration-none text-reset" asp-controller="Promociones" asp-action="Index">
+                    <div class="card-body p-5">
+                        <div style="color: #c02873;" class="mb-3"><i class="bi bi-tags fs-1"></i></div>
+                        <h4 class="fw-bold">OFERTAS</h4>
+                        <p class="text-muted">Precios exclusivos y promociones semanales que no podés dejar pasar.</p>
+                    </div>
+                </a>
+                
             </div>
         </div>
 
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card card-inicio border-0 shadow-lg text-center h-100">
-                <a class="text-decoration-none text-reset" asp-controller="Productos" asp-action="Index">
-                    <div class="card-body p-5">
-                        <div style="color: #dfa12a;" class="mb-3"><i class="bi bi-box-seam fs-1"></i></div>
-                        <h4 class="fw-bold">CATALOGO</h4>
-                        <p class="text-muted">Diversidad y excelencia en cada artículo de nuestro inventario.</p>
+                <div class="card-body p-5">
+                    <div style="color: #dfa12a;" class="mb-3">
+                        <i class="bi bi-clock-history fs-1"></i>
                     </div>
-                </a>
 
+                    <h4 class="fw-bold text-uppercase">Horarios de Atención</h4>
+
+                    <div class="mt-4">
+                        <p class="mb-2">
+                            <strong>Lunes a Viernes y Feriados</strong><br>
+                            <span class="text-muted">9:00 a 14:00</span>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Sábados</strong><br>
+                            <span class="text-muted">9:00 a 12:00</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         

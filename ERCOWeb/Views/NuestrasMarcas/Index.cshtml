@@ -1,0 +1,60 @@
+﻿@model List<Marca>
+<section id="marcas" class="py-5" style="background-color: #ffffff;">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h6 class="text-uppercase fw-bold" style="color: #c02873; letter-spacing: 2px;">Alianzas Estratégicas</h6>
+            <h2 class="display-5 fw-bold" style="color: #3e3f3f;">Marcas que confían en nosotros</h2>
+            <div class="mx-auto mt-3" style="width: 50px; height: 3px; background-color: #dfa12a;"></div>
+        </div>
+
+        <div class="row row-cols-2 row-cols-md-4 g-4 align-items-center justify-content-center">
+
+            @foreach(var marca in Model)
+            {
+                <div class="col text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="brand-card p-4 rounded shadow-sm border border-light">
+                        <img src="@Url.Content(@marca.Imagen)" alt="@marca.Nombre" class="img-fluid brand-logo">
+                    </div>
+                </div>
+            }
+
+
+
+
+        </div>
+
+        <div class="row mt-5" data-aos="fade-in" data-aos-delay="600">
+            <div class="col-12 text-center">
+                <p class="text-muted">Distribuimos productos de primera línea garantizando calidad y stock permanente para tu comercio.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .brand-card {
+        transition: all 0.3s ease;
+        background-color: #fff;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+            border-color: #c02873 !important; 
+        }
+
+    .brand-logo {
+        max-height: 70px;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+
+    .brand-card:hover .brand-logo {
+        filter: grayscale(0%); 
+        opacity: 1;
+    }
+</style>

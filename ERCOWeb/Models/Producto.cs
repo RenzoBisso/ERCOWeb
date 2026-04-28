@@ -11,7 +11,7 @@ public partial class Producto
 
     public bool Estado { get; set; }
 
-    public byte[] Imagen { get; set; } = null!;
+    public string Imagen { get; set; } = null!;
 
     public int IdCategoria { get; set; }
 

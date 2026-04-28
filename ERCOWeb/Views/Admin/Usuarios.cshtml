@@ -1,0 +1,89 @@
+﻿<style>
+    footer {
+        display: none !important;
+    }
+
+    #canal-wpp {
+        display: none !important;
+    }
+</style>
+@using Microsoft.EntityFrameworkCore.Metadata
+
+@model (List<Usuario> usuarios,List<IProperty> propiedades, string keyName)
+
+<div class="container-fluid py-4 px-lg-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-3">
+        <div>
+            <h1 class="fw-bold h2 mb-1">Gestión de Usuarios</h1>
+            <p class="text-muted small mb-0">Administra, filtra y edita los usuarios registrados de la plataforma.</p>
+        </div>
+    </div>
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-lg-4 col-md-12">
+                    <label class="form-label fw-semibold text-dark small">Buscar por nombre</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+                        <input type="text" name="search" class="form-control border-start-0 ps-0" placeholder="Ej: Rosario">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-dark w-100 shadow-sm">
+                            <i class="bi bi-funnel-fill"></i>
+                        </button>
+                        <a asp-action="Usuarios" class="btn btn-outline-secondary w-100 shadow-sm">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light border-bottom">
+                    <tr>
+                        @foreach (var propiedad in Model.propiedades)
+                        {
+                            <th class="py-3 px-4 text-uppercase fs-xs fw-bold text-muted" style="font-size: 0.75rem; letter-spacing: 0.5px;">
+                                @propiedad.Name
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.usuarios)
+                    {
+                        <tr>
+                            @foreach (var propiedad in Model.propiedades)
+                            {
+                                var value = user.GetType().GetProperty(propiedad.Name)?.GetValue(user);
+                                <td class="px-4 py-3">
+                                    @if (value is bool boolValue)
+                                    {
+                                        <span class="badge @(boolValue ? "bg-success" : "bg-danger")">
+                                            @(boolValue ? "Activo" : "Inactivo")
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-secondary">@value</span>
+                                    }
+                                </td>
+                            }
+
+                            @{
+                                var idValue = user.GetType().GetProperty(Model.keyName)?.GetValue(user);
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

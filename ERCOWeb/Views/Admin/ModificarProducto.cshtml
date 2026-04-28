@@ -1,0 +1,87 @@
+﻿<style>
+    footer {
+        display: none !important;
+    }
+
+    #canal-wpp {
+        display: none !important;
+    }
+</style>
+@model Producto
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 rounded-4">
+
+                <div class="card-header bg-primary text-dark p-4">
+                    <h4 class="mb-0">
+                        <i class="bi bi-pencil-square me-2"></i>Modificar Producto
+                    </h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <form asp-controller="Admin" asp-action="ModificarProducto" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" asp-for="IdProducto" />
+
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label fw-bold"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Categoría</label>
+                                <select asp-for="IdCategoria" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.Categorias, "IdCategoria", "Nombre"))">
+                                    <option value="">-- Seleccionar --</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Marca</label>
+                                <select asp-for="IdMarca" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.Marcas, "IdMarca", "Nombre"))">
+                                    <option value="">-- Seleccionar --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Imagen))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Imagen actual</label><br />
+                                <img src="@Model.Imagen" class="rounded border" style="width:100px; height:100px; object-fit:cover;" />
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Cambiar imagen</label>
+                            <input type="file" name="imgProducto" class="form-control" />
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" asp-for="Estado" />
+                                <label class="form-check-label fw-bold">Activo</label>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 border-top pt-3">
+                            <a asp-action="Productos" class="btn btn-outline-secondary rounded-pill px-4">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary rounded-pill px-5">
+                                Guardar Cambios
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

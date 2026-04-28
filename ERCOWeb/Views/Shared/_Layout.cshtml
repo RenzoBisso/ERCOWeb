@@ -12,6 +12,52 @@
     <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
     <link href="~/lib/dist/leaflet.css" rel="stylesheet" />
+    <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "WholesaleStore",
+          "name": "ERCO S.R.L.",
+          "alternateName": ["Distribuidora Cali", "Del Sol Distribuciones"],
+          "foundingDate": "1987",
+          "description": "Distribuidora mayorista líder en Luján y Provincia de Buenos Aires. Representante oficial de Unilever, Bagley, Kimberly-Clark y marcas líderes.",
+          "logo": "https://tuweb.com.ar/images/logo.png",
+          "address": {
+            "@@type": "PostalAddress",
+            "streetAddress": "https://www.google.com/maps/place/Erco+S.r.l./@@-34.5714508,-59.0936119,21z/data=!4m6!3m5!1s0x95bc877a91acb36d:0x8677d54c242137ba!8m2!3d-34.5714122!4d-59.0935933!16s%2Fg%2F11j4swg6q_?entry=tts&g_ep=EgoyMDI2MDQyMC4wIPu8ASoASAFQAw%3D%3D&skid=a3a68166-bb8d-4e04-afc3-4886de5c031b",
+            "addressLocality": "Luján",
+            "addressRegion": "Buenos Aires",
+            "addressCountry": "AR"
+          },
+          "areaServed": [
+            "Luján",
+            "San Andrés de Giles",
+            "Carmen de Areco",
+            "General Rodríguez",
+            "Navarro",
+            "Alberti",
+            "Roque Perez",
+            "Pedernales",
+            "Riestra",
+            "Marcos Paz",
+            "Saladillo",
+            "Del Carril",
+            "Polvaredas",
+            "Cañuelas",
+            "Lobos",
+            "Mercedes",
+            "Chivilcoy",
+            "Chacabuco",
+            "Suipacha"
+          ],
+          "brand": [
+            {"@@type": "Brand", "name": "Unilever"},
+            {"@@type": "Brand", "name": "Bagley"},
+            {"@@type": "Brand", "name": "Kimberly-Clark"},
+            {"@@type": "Brand", "name": "Jorgito"},
+            {"@@type": "Brand", "name": "Cepas Argentinas"}
+          ]
+        }
+    </script>
 </head>
 <body>
     <a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21&type=phone_number&app_absent=0" class="whatsapp-btn" target="_blank">
@@ -25,7 +71,7 @@
                    href="javascript:void(0)"
                    data-bs-toggle="collapse"
                    data-bs-target="#menuPrincipal">
-                    <img src="/images/logo_erco_para_web-13.png" alt="Logo" width="50">
+                    <img src="/images/erco/logo.svg" alt="Logo" width="50">
                 </a>
 
                 <button class="navbar-toggler" type="button"
@@ -42,16 +88,16 @@
 
                         <li class="nav-item d-none d-lg-block px-3">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">
-                            <img src="/images/width_459.webp" alt="Logo ERCO" width="200" style="cursor: pointer;">
+                                <img src="/images/erco/logo_erco_navbar.svg" alt="Logo ERCO" width="200" style="cursor: pointer;">
                             </a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">INICIO</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Nosotros" asp-action="Index">NOSOTROS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">PRODUCTOS</a></li>
-
-                        <li class="nav-item"><a class="nav-link" asp-controller="Sucursales" asp-action="Index">SUCURSALES</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Consultas" asp-action="Index">CONSULTAS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">OFERTAS</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index"><strong>INICIO</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Nosotros" asp-action="Index"><strong>NOSOTROS</strong> </a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Productos" asp-action="Index"><strong>PRODUCTOS</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="NuestrasMarcas" asp-action="Index"><strong>MARCAS</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Sucursales" asp-action="Index"><strong>SUCURSALES</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Consultas" asp-action="Index"><strong>CONSULTAS</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Promociones" asp-action="Index"><strong>PROMOCIONES</strong></a></li>
                     </ul>
                 </div>
 
@@ -63,40 +109,96 @@
             @RenderBody()
         </main>
     </div>
+    <section id="canal-wpp" class="py-5" data-aos="fade-up">
+        <div class="container">
+            <div class="card border-0 shadow-lg" style="border-radius: 30px; background: linear-gradient(135deg, #3e3f3f 0%, #2a2b2b 100%); overflow: hidden;">
+                <div class="row g-0 align-items-center">
 
+                    <div class="col-md-8 p-5 text-white">
+                        <h6 class="text-uppercase fw-bold mb-3" style="color: #dfa12a; letter-spacing: 2px;">Exclusivo para clientes</h6>
+                        <h2 class="display-6 fw-bold mb-3">Unite a nuestro Canal de Difusión</h2>
+                        <p class="opacity-75 mb-4">
+                            Recibí ofertas relámpago, ingresos de stock de marcas líderes y novedades de <strong>ERCO</strong> directo en tu celular.
+                            Sin spam, solo lo que tu negocio necesita.
+                        </p>
+                        <a href="#" target="_blank" class="btn btn-lg px-4 py-3 fw-bold shadow-sm"
+                           style="background-color: #c02873; color: white; border-radius: 12px; transition: 0.3s;">
+                            <i class="bi bi-whatsapp me-2"></i> Unirme a la comunidad
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 d-none d-md-flex justify-content-center">
+                        <div class="position-relative">
+                            <div style="position: absolute; width: 200px; height: 200px; background: #c02873; filter: blur(80px); opacity: 0.3; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                            <i class="bi bi- megaphone text-white-50" style="font-size: 8rem; position: relative; z-index: 1;"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .btn-lg:hover {
+            background-color: #a01d5d !important;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(192, 40, 115, 0.4) !important;
+        }
+    </style>
     <footer class="footer-custom border-top py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-start">
+
+                <div class="col-md-4 mb-4">
                     <h3 class="border-gradient-bottom mb-4">Contacto</h3>
                     <ul class="list-unstyled contact-list">
                         <li><i class="bi bi-geo-alt"></i> Leiva 939, Luján</li>
                         <li>
-                            <a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21&type=phone_number&app_absent=0" target="_blank" class="link-whatsapp">
-                                <i class="bi bi-whatsapp"></i>  Escribinos por WhatsApp
+                            <a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21" target="_blank" class="link-whatsapp">
+                                <i class="bi bi-whatsapp"></i> Escribinos por WhatsApp
                             </a>
                         </li>
                         <li>
-                            <a  class="link-email" asp-controller="Consultas" asp-action="Index">
-                                <i class="bi bi-envelope"></i>  distribuidoracali@ercosrl.com.ar
+                            <a class="link-email" asp-controller="Consultas" asp-action="Index">
+                                <i class="bi bi-envelope"></i> distribuidoracali@ercosrl.com.ar
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/ercodistribuidoramayorista?igsh=MWJleHVsczJ0NmhyYQ==" target="_blank" >
-                                <i class="bi bi-instagram"></i>  Escribinos por Instagram
+                            <a href="https://www.instagram.com/ercodistribuidoramayorista" target="_blank">
+                                <i class="bi bi-instagram"></i> Instagram
                             </a>
                         </li>
                         <li>
+
                             <a href="https://www.facebook.com/ercosrl" target="_blank">
+
                                 <i class="bi bi-facebook"></i>  Escribinos por Facebook
+
                             </a>
+
                         </li>
                     </ul>
                 </div>
 
-                <div class="col-md-6 text-md-end d-flex flex-column justify-content-end">
-                    <p class="mb-0 text-muted">&copy; 2026 - <strong>ERCO</strong></p>
+                <div class="col-md-4 mb-4 text-center">
+                    <h3 class="border-gradient-bottom mb-4">Novedades</h3>
+                    <p class="small text-muted">Suscribite para recibir nuestras ofertas mayoristas.</p>
+                    <form asp-controller="Suscripciones" asp-action="Suscribir" method="post" class="text-start">
+                        <div class="mb-2">
+                            <input type="text" name="Nombre" class="form-control form-control-sm bg-primary  bg-opacity-25 text-black border-secondary" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" name="Email" class="form-control form-control-sm bg-primary bg-opacity-25 text-black border-secondary" placeholder="Tu email" required>
+                            <button class="btn btn-outline-warning btn-sm" type="submit">Suscribirse</button>
+                        </div>
+                    </form>
                 </div>
+
+                <div class="col-md-4 mb-4 text-md-end d-flex flex-column justify-content-between align-items-md-end">
+                    <p class="mb-0 text-muted mt-auto">&copy; 2026 - <strong>ERCO</strong></p>
+                </div>
+
             </div>
         </div>
     </footer>

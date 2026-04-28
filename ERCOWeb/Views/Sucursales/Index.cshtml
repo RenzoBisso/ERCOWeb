@@ -1,6 +1,5 @@
 ﻿@model (List<ERCOWeb.Models.Sucursal> sucursales, List<ERCOWeb.Models.Zona> zonas)
 
-
 <div class=" container-fluid px-5 py-5" data-aos="zoom-in" data-aos-duration="1200">
     <div class="row align-items-center">
 
@@ -12,9 +11,11 @@
                 {
                     @if (sucursal.Estado != false)
                     {
-                        <div class="col text-center ">
-                            <div class="p-3 border-bottom border-radient border-2 bg-white shadow-sm rounded h-100 d-flex align-items-center justify-content-center">
-                                <a class="text-decoration-none text-reset" href="@sucursal.Ubicacion"><h6 class="mb-0 fw-bold ">@sucursal.Nombre</h6></a>
+                        <div class="col text-center" data-aos="zoom-in">
+                            <div class="p-3 bg-white shadow-sm rounded h-100 d-flex align-items-center justify-content-center border-radient">
+                                <a class="text-decoration-none text-reset" target="_blank" href="@sucursal.Ubicacion">
+                                    <h6 class="mb-0 fw-bold">@sucursal.Nombre</h6>
+                                </a>
                             </div>
                         </div>
                     }

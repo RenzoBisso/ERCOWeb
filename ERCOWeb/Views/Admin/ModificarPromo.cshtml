@@ -1,0 +1,74 @@
+﻿<style>
+    footer {
+        display: none !important;
+    }
+
+    #canal-wpp {
+        display: none !important;
+    }
+</style>
+@model Promo
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Modificar promo con Id: @Model.Id</h4>
+                    <small>Título actual: @Model.Titulo</small>
+                </div>
+                <div class="card-body">
+                    <form  asp-action="ModificarPromo" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" name="Id" value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label font-weight-bold">Título</label>
+                            <input type="text" class="form-control" id="titulo" name="Titulo" value="@Model.Titulo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="Descripcion" rows="3">@Model.Descripcion</textarea>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                                <input type="date" class="form-control" id="fecha_inicio" name="FechaInicio" value="@Model.FechaInicio.ToString("yyyy-MM-dd")" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+                                <input type="date" class="form-control" id="fecha_fin" name="FechaFin" value="@Model.FechaFin.ToString("yyyy-MM-dd")" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="archivoPdf" class="form-label">Documento PDF</label>
+                                <input class="form-control" type="file" id="archivoPdf" name="archivoPdf" accept=".pdf">
+                                @if (!string.IsNullOrEmpty(Model.Pdf))
+                                {
+                                    <small class="text-muted">Archivo: @Model.Pdf</small>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <label for="image" class="form-label">Imagen</label>
+                                <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                                @if (!string.IsNullOrEmpty(Model.Imagen))
+                                {
+                                    <small class="text-muted">Imagen: @Model.Imagen</small>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+                            <button type="submit" class="btn btn-primary px-5">Actualizar Promo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

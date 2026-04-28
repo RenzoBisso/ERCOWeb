@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Acceso Administrativo";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h4 class="mb-0">ERCO - Panel Admin</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-controller="Account" asp-action="Login" method="post">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">CORREO ELECTRÓNICO</label>
+                            <input name="email" type="email" class="form-control" placeholder="email@email.com" required autofocus />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">CONTRASEÑA</label>
+                            <input name="password" type="password" class="form-control" placeholder="••••••••" required />
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input name="rememberMe" type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label small" for="remember">Recordar sesión</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                            INGRESAR AL PANEL
+                        </button>
+                    </form>
+                </div>
+                <div class="card-footer bg-light text-center py-3">
+                    <small class="text-muted">Acceso restringido solo a personal autorizado.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
