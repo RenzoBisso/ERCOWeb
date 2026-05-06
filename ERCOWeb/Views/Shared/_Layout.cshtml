@@ -109,28 +109,40 @@
             @RenderBody()
         </main>
     </div>
-    <section id="canal-wpp" class="py-5" data-aos="fade-up">
+    <section id="canal-wpp" class="py-5" data-aos="fade-up" data-aos-duration="1400">
         <div class="container">
-            <div class="card border-0 shadow-lg" style="border-radius: 30px; background: linear-gradient(135deg, #3e3f3f 0%, #2a2b2b 100%); overflow: hidden;">
+            <div class="card border-0 shadow-sm" style="border-radius: 40px; background: linear-gradient(135deg, #ffffff 0%, #fdf5e6 100%); overflow: hidden;">
                 <div class="row g-0 align-items-center">
 
-                    <div class="col-md-8 p-5 text-white">
-                        <h6 class="text-uppercase fw-bold mb-3" style="color: #dfa12a; letter-spacing: 2px;">Exclusivo para clientes</h6>
-                        <h2 class="display-6 fw-bold mb-3">Unite a nuestro Canal de Difusión</h2>
-                        <p class="opacity-75 mb-4">
-                            Recibí ofertas relámpago, ingresos de stock de marcas líderes y novedades de <strong>ERCO</strong> directo en tu celular.
-                            Sin spam, solo lo que tu negocio necesita.
+                    <div class="col-md-7 p-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="~/images/logo_erco_para_web-13.png" alt="Logo ERCO" style="height: 70px;padding-top:30px;" class="mb-4">
+                            <h2 class="fw-bold m-0" style="color: #d35400; letter-spacing: -1px;">ERCO</h2>
+                        </div>
+
+                        <h2 class="display-5 fw-bold mb-3" style="color: #b34700; line-height: 1.1;">
+                            Unite al canal de<br>ERCO Mayorista
+                        </h2>
+
+                        <p class="fs-5 mb-4" style="color: #444; max-width: 500px;">
+                            Recibí ofertas exclusivas en <strong>alimentos, perfumería y limpieza</strong> directo en WhatsApp.
                         </p>
-                        <a href="#" target="_blank" class="btn btn-lg px-4 py-3 fw-bold shadow-sm"
-                           style="background-color: #c02873; color: white; border-radius: 12px; transition: 0.3s;">
-                            <i class="bi bi-whatsapp me-2"></i> Unirme a la comunidad
-                        </a>
                     </div>
 
-                    <div class="col-md-4 d-none d-md-flex justify-content-center">
-                        <div class="position-relative">
-                            <div style="position: absolute; width: 200px; height: 200px; background: #c02873; filter: blur(80px); opacity: 0.3; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-                            <i class="bi bi- megaphone text-white-50" style="font-size: 8rem; position: relative; z-index: 1;"></i>
+                    <div class="col-md-5 d-flex flex-column align-items-center justify-content-center p-5">
+                        <div class="bg-white p-4 shadow-lg text-center" style="border-radius: 25px; max-width: 300px;">
+                            <div class="mb-2">
+                                <i class="bi bi-whatsapp" style="font-size: 3rem; color: #25D366;"></i>
+                            </div>
+
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://whatsapp.com/channel/0029Vb7bVtG23n3iPdsONz0K"
+                                 alt="QR WhatsApp" class="img-fluid mb-4" style="border-radius: 10px;">
+
+                            <a href="https://whatsapp.com/channel/0029Vb7bVtG23n3iPdsONz0K" target="_blank"
+                               class="btn w-100 fw-bold text-uppercase py-3"
+                               style="background-color: #ff6600; color: white; border-radius: 15px; font-size: 0.9rem;">
+                                Unirme al canal
+                            </a>
                         </div>
                     </div>
 
@@ -138,59 +150,49 @@
             </div>
         </div>
     </section>
-    <footer class="footer-custom border-top py-5">
+    <footer class="footer-custom py-5">
         <div class="container">
             <div class="row align-items-start">
+                <div class="col-md-5 mb-4">
+                    <div class="footer-logo mb-4">
+                        <img src="~/images/logo_erco_para_web-13.png" alt="ERCO" style="height: 60px;">
+                    </div>
 
-                <div class="col-md-4 mb-4">
-                    <h3 class="border-gradient-bottom mb-4">Contacto</h3>
+                    <h3 class="footer-title">Contacto</h3>
                     <ul class="list-unstyled contact-list">
-                        <li><i class="bi bi-geo-alt"></i> Leiva 939, Luján</li>
+                        <li><a href="https://www.google.com/maps/place/Erco+S.r.l./@@-34.5714508,-59.0936119,21z/data=!4m6!3m5!1s0x95bc877a91acb36d:0x8677d54c242137ba!8m2!3d-34.5714122!4d-59.0935933!16s%2Fg%2F11j4swg6q_?entry=tts&g_ep=EgoyMDI2MDQyMC4wIPu8ASoASAFQAw%3D%3D&skid=a3a68166-bb8d-4e04-afc3-4886de5c031b"><i class="bi bi-geo-alt"></i> Leiva 939, Luján</a></li>
+                        <li><a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21"><i class="bi bi-whatsapp"></i> Escribinos por WhatsApp</a></li>
                         <li>
-                            <a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21" target="_blank" class="link-whatsapp">
-                                <i class="bi bi-whatsapp"></i> Escribinos por WhatsApp
-                            </a>
-                        </li>
-                        <li>
+
                             <a class="link-email" asp-controller="Consultas" asp-action="Index">
+
                                 <i class="bi bi-envelope"></i> distribuidoracali@ercosrl.com.ar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/ercodistribuidoramayorista" target="_blank">
-                                <i class="bi bi-instagram"></i> Instagram
-                            </a>
-                        </li>
-                        <li>
-
-                            <a href="https://www.facebook.com/ercosrl" target="_blank">
-
-                                <i class="bi bi-facebook"></i>  Escribinos por Facebook
 
                             </a>
 
                         </li>
+                        <li><a href="https://www.instagram.com/ercodistribuidoramayorista"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/ercosrl"><i class="bi bi-facebook"></i> Escribinos por Facebook</a></li>
                     </ul>
                 </div>
 
-                <div class="col-md-4 mb-4 text-center">
-                    <h3 class="border-gradient-bottom mb-4">Novedades</h3>
-                    <p class="small text-muted">Suscribite para recibir nuestras ofertas mayoristas.</p>
-                    <form asp-controller="Suscripciones" asp-action="Suscribir" method="post" class="text-start">
-                        <div class="mb-2">
-                            <input type="text" name="Nombre" class="form-control form-control-sm bg-primary  bg-opacity-25 text-black border-secondary" placeholder="Tu nombre" required>
+                <div class="col-md-5 mb-4">
+                    <h3 class="footer-title">Novedades</h3>
+                    <p>Suscribite para recibir nuestras ofertas mayoristas.</p>
+                    <form asp-controller="Suscripciones" asp-action="Suscribir" method="post">
+                        <div class="mb-3">
+                            <input type="text" class="form-control footer-input" placeholder="Tu nombre" required>
                         </div>
-                        <div class="input-group">
-                            <input type="email" name="Email" class="form-control form-control-sm bg-primary bg-opacity-25 text-black border-secondary" placeholder="Tu email" required>
-                            <button class="btn btn-outline-warning btn-sm" type="submit">Suscribirse</button>
+                        <div class="mb-3">
+                            <input type="email" class="form-control footer-input" placeholder="Tu email" required>
                         </div>
+                        <button class="btn btn-subscribe-gradient w-100" type="submit">Suscribirse</button>
                     </form>
                 </div>
 
-                <div class="col-md-4 mb-4 text-md-end d-flex flex-column justify-content-between align-items-md-end">
-                    <p class="mb-0 text-muted mt-auto">&copy; 2026 - <strong>ERCO</strong></p>
+                <div class="col-md-2 mb-4 d-flex align-items-end justify-content-md-end">
+                    <p class="mb-0 text-muted">© 2026 - ERCO</p>
                 </div>
-
             </div>
         </div>
     </footer>

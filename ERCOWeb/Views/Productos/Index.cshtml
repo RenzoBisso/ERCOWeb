@@ -2,47 +2,6 @@
 
 <div class="container py-5">
     <div class="row">
-        <aside class="col-lg-3 mb-4">
-            <div class="card border-0 shadow-sm p-3 rounded-4">
-                <h5 class="fw-bold mb-3 filter-title text-uppercase">Filtros</h5>
-
-                <form method="get" asp-controller="Productos" asp-action="Index">
-
-
-                    <div class="mb-4">
-                        <label class="form-label small fw-bold">Buscar</label>
-                        <input type="text" name="search" class="form-control" placeholder="¿Qué buscas?">
-                        <br />
-                        <button type="submit" class="btn btn-dark w-100 rounded-pill" style="background-color: var(--primary-dark);">
-                            Aplicar Filtros
-                        </button>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label small fw-bold">Categorías</label>
-                        <select name="idCategoria" class="form-select">
-                            <option value="">Todas</option>
-                            @foreach (var cat in ViewBag.Categorias)
-                            {
-                                <option value="@cat.IdCategoria">@cat.Nombre</option>
-                            }
-                        </select>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label small fw-bold">Marcas</label>
-                        @foreach (var marca in ViewBag.Marcas)
-                        {
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="marcas" value="@marca.IdMarca" id="m-@marca.IdMarca">
-                                <label class="form-check-label small" for="m-@marca.IdMarca">@marca.Nombre</label>
-                            </div>
-                        }
-                    </div>
-                </form>
-            </div>
-        </aside>
-
         <main class="col-lg-9">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <p class="text-muted mb-0">Mostrando <strong>@Model.Count</strong> productos</p>

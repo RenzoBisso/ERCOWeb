@@ -7,10 +7,10 @@ namespace ERCOWeb.Controllers
     public class NosotrosController : Controller
     {
 
-        
 
 
-        public async Task<IActionResult> Index()
+
+        public IActionResult Index()
         {
 
             return View();

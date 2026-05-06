@@ -8,7 +8,7 @@
     --accent-gold: #dfa12a;
     --accent-pink: #c02873;
     --accent-orange: #ca5e40;
-    --accent-blue: #1b6ec2;
+    --accent-violet: #af1c65;
 }
 
 
@@ -122,6 +122,15 @@ a {
         }
 
 
+.carousel-gradient {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Esto mantiene la proporción de una pantalla estándar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /* =============================================================================
    4. FOCUS / ACCESIBILIDAD
    ============================================================================= */
@@ -139,15 +148,23 @@ a {
    5. NAVBAR
    ============================================================================= */
 
+/* 1. Base del enlace con transición */
 .navbar a {
     color: black;
     font-weight: 500;
+    text-decoration: none;
+    /* Suaviza el cambio de color y cualquier transform */
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Necesario para que el transform funcione bien */
 }
 
+    /* 2. Efecto Hover: Cambio de color + ligero levantamiento */
     .navbar a:hover {
         color: var(--accent-gold);
+        transform: translateY(-2px); /* Se eleva apenas 2 píxeles */
     }
 
+/* 3. Animación de entrada para el menú móvil */
 @media (max-width: 991px) {
     .navbar-collapse {
         background-color: #fff;
@@ -155,11 +172,54 @@ a {
         border-radius: 8px;
         margin-top: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Animación sutil de aparición */
+        animation: slideDown 0.4s ease forwards;
     }
 
     .nav-item {
         border-bottom: 1px solid #eee;
         padding: 10px 0;
+        /* Opacidad inicial para que aparezcan suavemente */
+        opacity: 0;
+        animation: fadeInItem 0.5s ease forwards;
+    }
+
+        /* Retraso para que los items aparezcan uno tras otro */
+        .nav-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .nav-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .nav-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+}
+
+/* Definición de las animaciones */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInItem {
+    from {
+        opacity: 0;
+        transform: translateX(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
@@ -168,36 +228,73 @@ a {
    6. BOTONES
    ============================================================================= */
 
+/* --- Estilos Base para todos los botones --- */
+.btn-primary, .btn-submit, .nav-pills .nav-link {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden; /* Para efectos de brillo si decides agregarlos luego */
+}
+
+/* 1. Botón Primario */
 .btn-primary {
-    color: #fff;
+    color: black;
     background-color: var(--accent-blue);
     border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: var(--accent-blue);
-    border-color: #1861ac;
-}
+    .btn-primary:hover {
+        background-color: #1a6cc0; /* Un tono ligeramente más claro o saturado */
+        transform: translateY(-1px); /* Elevación mínima */
+        box-shadow: 0 4px 8px rgba(24, 97, 172, 0.3); /* Sombra suave del color del botón */
+    }
 
-button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-}
+    .btn-primary:active {
+        transform: translateY(0); /* Vuelve a su sitio al hacer click */
+        filter: brightness(0.9);
+    }
 
+/* 2. Botón Submit (El dorado) */
 .btn-submit {
     background-color: #dfaa30;
     border: none;
     border-radius: 12px;
     font-size: 1.1rem;
-    transition: background 0.3s;
+    color: white;
+    cursor: pointer;
 }
 
     .btn-submit:hover {
         background-color: #c99828;
+        transform: scale(1.02); /* Crece un 2% de forma muy fluida */
+        box-shadow: 0 5px 15px rgba(223, 170, 48, 0.4);
     }
 
+    .btn-submit:active {
+        transform: scale(0.98); /* Se "hunde" ligeramente al presionarlo */
+    }
+
+/* 3. Nav Pills (Links activos) */
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: var(--accent-blue);
+    border-color: #1861ac;
+    /* Animación de entrada cuando se activa */
+    animation: pulseActive 0.4s ease-out;
+}
+
+@keyframes pulseActive {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
 /* Botón principal canal WPP (desde _Layout inline) */
 .btn-lg:hover {
     background-color: #a01d5d !important;
@@ -349,6 +446,54 @@ button.accept-policy {
     opacity: 1;
 }
 
+/* El contenedor de las fotos */
+.erco-blob-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Imagen Principal (Grande) con forma de Blob */
+.blob-main {
+    width: 80%;
+    height: 350px;
+    object-fit: cover;
+    clip-path: polygon(25% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%, 0% 25%);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+/* Imagen Secundaria (Decorativa/Fondo) */
+.blob-sub {
+    position: absolute;
+    width: 50%;
+    height: 200px;
+    background-color: rgba(192, 40, 115, 0.1); 
+    left: -10px;
+    bottom: -10px;
+    z-index: 1;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+/* Ajuste para que el texto y la imagen se alineen bien */
+.history-section {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .blob-main {
+        width: 100%;
+        height: 280px;
+    }
+
+    .blob-sub {
+        display: none;
+    }
+}
 
 /* =============================================================================
    10. ÍCONOS Y ELEMENTOS DECORATIVOS
@@ -492,42 +637,90 @@ button.accept-policy {
    14. FOOTER
    ============================================================================= */
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px;
+.footer-custom {
+    background-color: var(--primary-dark);
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    border-top: none;
+    padding: 60px 0 20px 0;
 }
 
-.footer-custom ul li {
-    color: var(--accent-gold);
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-    .footer-custom ul li i {
-        margin-right: 10px;
-        font-size: 1.1rem;
-        opacity: 0.9;
+    .footer-custom::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px; 
+        background: linear-gradient(to right, #f39200 0%, #f39200 33%, #d72d4b 33%, #d72d4b 66%, #911d6d 66%, #911d6d 100% );
+    }
+    .footer-custom::after {
+        content: "";
+        position: absolute;
+        bottom: 0; 
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(to right, #f39200 0%, #f39200 33%, #d72d4b 33%, #d72d4b 66%, #911d6d 66%, #911d6d 100% );
     }
 
-    .footer-custom ul li a {
-        color: var(--accent-gold);
+.footer-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Lista de contacto */
+.contact-list li {
+    margin-bottom: 15px;
+}
+
+    .contact-list li a {
+        color: #ffffff !important;
         text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.05rem;
+        transition: opacity 0.3s;
     }
 
-        .footer-custom ul li a:hover {
-            color: #b07d1e;
-            text-decoration: underline;
+        .contact-list li a i {
+            color: #f39200;
+            font-size: 1.2rem;
         }
 
+        .contact-list li a:hover {
+            opacity: 0.8;
+        }
 
+/* Inputs como en la imagen */
+.footer-input {
+    background-color: transparent !important;
+    border: 1px solid #555 !important;
+    color: white !important;
+    padding: 12px !important;
+}
+
+    .footer-input::placeholder {
+        color: #888;
+    }
+
+.btn-subscribe-gradient {
+    background: linear-gradient(to right, #f39200, #d72d4b, #911d6d);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+    .btn-subscribe-gradient:hover {
+        transform: scale(1.02);
+        color: white;
+    }
 /* =============================================================================
    15. TABLAS (ADMIN)
    ============================================================================= */
