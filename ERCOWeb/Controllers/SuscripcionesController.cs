@@ -26,29 +26,26 @@ namespace ERCOWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Suscribir(string nombre, string email)
         {
-            if (string.IsNullOrEmpty(email))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             try
             {
-                if (!buscarEmail(email))
+                if (string.IsNullOrEmpty(email))
                 {
-                    Usuario user=new Usuario(nombre,email,true);
+                    return RedirectToAction("Index", "Home");
+                }
+                bool existe = buscarEmail(email);
+                if (!existe)
+                {
+                    Usuario user = new Usuario(nombre, email, true);
                     await _context.Usuarios.AddAsync(user);
                     await _context.SaveChangesAsync();
                 }
-
-
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
+                return RedirectToAction("Index", "Home");
             }
-
-            return RedirectToAction("Index", "Home");
         }
-
 
     }
 }

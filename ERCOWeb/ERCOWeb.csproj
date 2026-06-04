@@ -24,7 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\catalogopdf\" />
     <Folder Include="wwwroot\images\marcas\" />
+    <Folder Include="wwwroot\images\catalogos\" />
     <Folder Include="wwwroot\promoPDF\" />
   </ItemGroup>
 

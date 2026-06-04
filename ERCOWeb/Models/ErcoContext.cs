@@ -19,11 +19,11 @@ public partial class ErcoContext : IdentityDbContext<IdentityUser>
 
     public virtual DbSet<Categorium> Categoria { get; set; }
     public virtual DbSet<Marca> Marcas { get; set; }
-    public virtual DbSet<Producto> Productos { get; set; }
     public virtual DbSet<Promo> Promos { get; set; }
     public virtual DbSet<Sucursal> Sucursals { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
     public virtual DbSet<Zona> Zonas { get; set; }
+    public virtual DbSet<Catalogo> Catalogos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,30 +49,11 @@ public partial class ErcoContext : IdentityDbContext<IdentityUser>
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.Imagen).IsUnicode(false).HasColumnName("imagen");
             entity.Property(e => e.Nombre).HasMaxLength(50).IsFixedLength().HasColumnName("nombre");
+            entity.Property(e => e.Prioridad).HasColumnName("Prioridad");
         });
 
-        modelBuilder.Entity<Producto>(entity =>
-        {
-            entity.HasKey(e => e.IdProducto).HasName("PK_Tabla1");
-            entity.ToTable("PRODUCTO");
-            entity.Property(e => e.IdProducto).HasColumnName("idProducto");
-            entity.Property(e => e.Estado).HasColumnName("estado");
-            entity.Property(e => e.IdCategoria).HasColumnName("idCategoria");
-            entity.Property(e => e.IdMarca).HasColumnName("idMarca");
-            entity.Property(e => e.Imagen).HasColumnName("imagen");
-            entity.Property(e => e.Nombre).HasMaxLength(50).IsFixedLength().HasColumnName("nombre");
 
-            entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Productos)
-                .HasForeignKey(d => d.IdCategoria)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_PRODUCTO_CATEGORIA");
-
-            entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Productos)
-                .HasForeignKey(d => d.IdMarca)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Tabla1_Tabla1");
-        });
-
+          
         modelBuilder.Entity<Promo>(entity =>
         {
             entity.ToTable("PROMO");
@@ -114,6 +95,18 @@ public partial class ErcoContext : IdentityDbContext<IdentityUser>
             entity.Property(e => e.IdZona).HasColumnName("idZona");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.Nombre).HasMaxLength(50).IsFixedLength().HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<Catalogo>(entity =>
+        {
+            entity.HasKey(e => e.IdCatalogo);
+            entity.ToTable("CATALOGO");
+            entity.Property(e => e.IdCatalogo).HasColumnName("idCatalogo");
+            entity.Property(e => e.Tipo).HasMaxLength(20).IsUnicode(false).HasColumnName("tipo");
+            entity.Property(e => e.Descripcion).HasMaxLength(100).IsUnicode(false).HasColumnName("descripcion");
+            entity.Property(e => e.Imagen).IsUnicode(false).HasColumnName("imagen");
+            entity.Property(e => e.Pdf).IsUnicode(false).HasColumnName("pdf");
+            entity.Property(e => e.FechaActualizacion).HasColumnName("fechaActualizacion");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -1,6 +1,7 @@
 ﻿using ERCOWeb.Models.ViewModels;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Security;
 
 namespace ERCOWeb.Servicios
 {
@@ -25,7 +26,8 @@ namespace ERCOWeb.Servicios
             var password = _configuration["CONFIGURACIONES_EMAIL:PASSWORD"];
             var host = _configuration["CONFIGURACIONES_EMAIL:HOST"];
             var puerto = int.Parse(_configuration["CONFIGURACIONES_EMAIL:PUERTO"]);
-
+            ServicePointManager.ServerCertificateValidationCallback =
+    (sender, certificate, chain, sslPolicyErrors) => true;
             using (var smtpCliente = new SmtpClient(host, puerto))
             {
                 smtpCliente.EnableSsl = true;
@@ -46,32 +48,50 @@ namespace ERCOWeb.Servicios
             var host = _configuration["CONFIGURACIONES_EMAIL:HOST"];
             var puerto = int.Parse(_configuration["CONFIGURACIONES_EMAIL:PUERTO"]);
 
-            using (var smtpCliente = new SmtpClient(host, puerto))
+            try
             {
-                smtpCliente.EnableSsl = true;
-                smtpCliente.UseDefaultCredentials = false;
-                smtpCliente.Credentials = new NetworkCredential(emailEmisor, password);
-
-                using (var mensaje = new MailMessage())
+                ServicePointManager.ServerCertificateValidationCallback =
+    (sender, certificate, chain, sslPolicyErrors) => true;
+                using (var smtpCliente = new SmtpClient(host, puerto))
                 {
-                    mensaje.From = new MailAddress(emailEmisor, "ERCO S.R.L");
-                    mensaje.Subject = tema;
-                    mensaje.Body = cuerpo;
-                    mensaje.IsBodyHtml = true;
+                    smtpCliente.EnableSsl = true;
+                    smtpCliente.UseDefaultCredentials = false;
+                    smtpCliente.Credentials = new NetworkCredential(emailEmisor, password);
 
-                    mensaje.To.Add(emailEmisor);
-
-                    foreach (var email in receptores)
+                    using (var mensaje = new MailMessage())
                     {
-                        if (!string.IsNullOrWhiteSpace(email))
-                        {
-                            mensaje.Bcc.Add(email);
-                        }
-                    }
+                        mensaje.From = new MailAddress(emailEmisor, "ERCO S.R.L");
+                        mensaje.Subject = tema;
+                        mensaje.Body = cuerpo;
+                        mensaje.IsBodyHtml = true;
 
-                    await smtpCliente.SendMailAsync(mensaje);
+                        mensaje.To.Add(emailEmisor);
+
+                        foreach (var email in receptores)
+                        {
+                            if (!string.IsNullOrWhiteSpace(email))
+                            {
+                                mensaje.Bcc.Add(email.Trim()); 
+                            }
+                        }
+
+                        await smtpCliente.SendMailAsync(mensaje);
+                    }
                 }
-            } 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n--- ERROR AL ENVIAR ---");
+                Console.WriteLine($"Error general: {ex.Message}");
+
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Causa real (InnerException): {ex.InnerException.Message}");
+                }
+                Console.WriteLine($"-----------------------\n");
+
+                throw; 
+            }
         }
     }
 }

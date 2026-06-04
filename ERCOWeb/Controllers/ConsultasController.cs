@@ -22,9 +22,19 @@ namespace ERCOWeb.Controllers
             return View();
         }
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Enviar(FormViewModel formulario)
         {
-            if (!ModelState.IsValid) return View("Index", formulario);
+            Console.WriteLine("ENTRO AL METODO ENVIAR");
+            Console.WriteLine($"ModelState válido: {ModelState.IsValid}");
+            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                Console.WriteLine($"VALIDACION: {error.ErrorMessage}");
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                    Console.WriteLine($"VALIDACION: {error.ErrorMessage}");
+                return View("Index", formulario);
+            }
 
             try
             {
@@ -41,13 +51,16 @@ namespace ERCOWeb.Controllers
             </div>";
 
 
-                await _servicioEmail.EnviarEmail("renzo_bisso@outlook.com", "Nueva Consulta Web", cuerpoEmail);
+                await _servicioEmail.EnviarEmail("erconotificaciones@gmail.com", "Nueva Consulta Web", cuerpoEmail);
+                Console.WriteLine("EMAIL ENVIADO OK");
 
                 TempData["MensajeExito"] = "¡Gracias! Tu mensaje ha sido enviado correctamente.";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"ERROR: {ex.Message}");
+                Console.WriteLine($"INNER: {ex.InnerException?.Message}");
                 ViewBag.Error = "Hubo un problema al enviar el correo: " + ex.Message;
                 return View("Index", formulario);
             }

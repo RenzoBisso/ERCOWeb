@@ -31,7 +31,14 @@
                             </div>
                             <small class="text-muted">Si se desactiva, no aparecerá en los filtros de la web.</small>
                         </div>
-
+                        <div class="mb-4">
+                            <label asp-for="Prioridad" class="form-label fw-bold">Orden de Prioridad</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-sort-numeric-down"></i></span>
+                                <input type="number" asp-for="Prioridad" class="form-control form-control-lg" placeholder="Ej: 1, 2, 3..." min="0">
+                            </div>
+                            <div class="form-text">Define el orden de aparición. Los números más bajos (ej: 1) aparecen primero.</div>
+                        </div>
                         <div class="d-flex justify-content-end gap-2 border-top pt-3">
                             <a asp-action="Marcas" class="btn btn-outline-secondary px-4 rounded-pill">Cancelar</a>
                             <button type="submit" class="btn btn-dark px-5 rounded-pill shadow-sm">

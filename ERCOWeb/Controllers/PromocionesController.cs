@@ -18,13 +18,18 @@ namespace ERCOWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            try
+            {
+                var hoy = DateOnly.FromDateTime(DateTime.Today);
 
-            var promosValidas = await _context.Promos
-                .Where(p => p.FechaInicio <= hoy && p.FechaFin >= hoy)
-                .ToListAsync();
+                var promosValidas = await _context.Promos
+                    .Where(p => p.FechaInicio <= hoy && p.FechaFin >= hoy)
+                    .ToListAsync();
 
-            return View(promosValidas);
+                return View(promosValidas);
+            }
+            catch (Exception ex) { return View(ex); }
+
         }
 
 

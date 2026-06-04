@@ -1,10 +1,20 @@
 using ERCOWeb.Models;
 using ERCOWeb.Servicios;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 104857600;
+});
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 104857600; 
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IServicioEmail, ServicioEmail>();

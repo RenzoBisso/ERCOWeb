@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,10 +93,10 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index"><strong>INICIO</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Nosotros" asp-action="Index"><strong>NOSOTROS</strong> </a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Productos" asp-action="Index"><strong>PRODUCTOS</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="NuestrasMarcas" asp-action="Index"><strong>MARCAS</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Sucursales" asp-action="Index"><strong>SUCURSALES</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Consultas" asp-action="Index"><strong>CONSULTAS</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Catalogo" asp-action="Index"><strong>CATALOGO</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Promociones" asp-action="Index"><strong>PROMOCIONES</strong></a></li>
                     </ul>
                 </div>
@@ -160,19 +160,19 @@
 
                     <h3 class="footer-title">Contacto</h3>
                     <ul class="list-unstyled contact-list">
-                        <li><a href="https://www.google.com/maps/place/Erco+S.r.l./@@-34.5714508,-59.0936119,21z/data=!4m6!3m5!1s0x95bc877a91acb36d:0x8677d54c242137ba!8m2!3d-34.5714122!4d-59.0935933!16s%2Fg%2F11j4swg6q_?entry=tts&g_ep=EgoyMDI2MDQyMC4wIPu8ASoASAFQAw%3D%3D&skid=a3a68166-bb8d-4e04-afc3-4886de5c031b"><i class="bi bi-geo-alt"></i> Leiva 939, Luján</a></li>
-                        <li><a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21"><i class="bi bi-whatsapp"></i> Escribinos por WhatsApp</a></li>
+                        <li><a href="https://www.google.com/maps/place/Erco+S.r.l./@@-34.5714508,-59.0936119,21z/data=!4m6!3m5!1s0x95bc877a91acb36d:0x8677d54c242137ba!8m2!3d-34.5714122!4d-59.0935933!16s%2Fg%2F11j4swg6q_?entry=tts&g_ep=EgoyMDI2MDQyMC4wIPu8ASoASAFQAw%3D%3D&skid=a3a68166-bb8d-4e04-afc3-4886de5c031b" target="_blank"><i class="bi bi-geo-alt"></i> Leiva 939, Luján</a></li>
+                        <li><a href="https://api.whatsapp.com/send/?phone=5492323301623&text=Hola%21+Te+escribo+desde+la+web%21" target="_blank"><i class="bi bi-whatsapp"></i> Escribinos por WhatsApp</a></li>
                         <li>
 
                             <a class="link-email" asp-controller="Consultas" asp-action="Index">
 
-                                <i class="bi bi-envelope"></i> distribuidoracali@ercosrl.com.ar
+                                <i class="bi bi-envelope"></i> Contactos@ercosrl.com.ar
 
                             </a>
 
                         </li>
-                        <li><a href="https://www.instagram.com/ercodistribuidoramayorista"><i class="bi bi-instagram"></i> Instagram</a></li>
-                        <li><a href="https://www.facebook.com/ercosrl"><i class="bi bi-facebook"></i> Escribinos por Facebook</a></li>
+                        <li><a href="https://www.instagram.com/ercodistribuidoramayorista" target="_blank"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61583642530254" target="_blank"><i class="bi bi-facebook"></i> Escribinos por Facebook</a> </li>
                     </ul>
                 </div>
 
@@ -181,10 +181,10 @@
                     <p>Suscribite para recibir nuestras ofertas mayoristas.</p>
                     <form asp-controller="Suscripciones" asp-action="Suscribir" method="post">
                         <div class="mb-3">
-                            <input type="text" class="form-control footer-input" placeholder="Tu nombre" required>
+                            <input type="text" name="nombre" class="form-control footer-input" placeholder="Tu nombre" required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control footer-input" placeholder="Tu email" required>
+                            <input type="email" name="email" class="form-control footer-input" placeholder="Tu email" required>
                         </div>
                         <button class="btn btn-subscribe-gradient w-100" type="submit">Suscribirse</button>
                     </form>
@@ -201,8 +201,35 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/aos-master/aos-master/dist/aos.js"></script>
     <script src="~/lib/dist/leaflet.js"></script>
+
+    
     <script>
         AOS.init();
+        document.addEventListener("DOMContentLoaded", function() {
+            const hoy = new Date();
+            const dia = hoy.getDate();
+            const mes = hoy.getMonth() + 1; 
+
+            const body = document.body;
+
+            /*            if (mes === 4 && dia >= 1 && dia <= 5) {
+                body.classList.add("theme-easter");
+            }
+
+            else if (mes === 10 && dia >= 25) {
+                body.classList.add("theme-halloween");
+            }
+
+            else if (mes === 12 && dia >= 20) {
+                body.classList.add("theme-christmas");
+            }
+
+            else if ((dia === 25 && mes === 5) || (dia === 9 && mes === 7)) {
+                body.classList.add("theme-patria");
+            }*/
+
+        });
+
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

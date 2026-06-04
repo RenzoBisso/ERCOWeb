@@ -1,0 +1,364 @@
+﻿@{
+    ViewData["Title"] = "Catálogo";
+    var general = ViewBag.General as ERCOWeb.Models.Catalogo;
+    var unilever = ViewBag.Unilever as ERCOWeb.Models.Catalogo;
+}
+
+<style>
+    /* ── Hero ── */
+    .catalogo-hero {
+        background: linear-gradient(135deg, #dfa12a 0%, #c8891a 55%, #f5c96a 100%);
+        padding: 70px 20px 100px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .catalogo-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background: #fdf3e3;
+            clip-path: ellipse(60% 100% at 50% 100%);
+        }
+
+        .catalogo-hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,.18);
+            margin-bottom: .5rem;
+        }
+
+        .catalogo-hero p {
+            color: rgba(255,255,255,.9);
+            font-size: 1.05rem;
+            margin-bottom: 0;
+        }
+
+    /* ── Sección ── */
+    .catalogo-section {
+        background: #fdf3e3;
+        padding: 70px 0 80px;
+        min-height: 60vh;
+    }
+
+    /* ── Tarjetas ── */
+    .cat-card {
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 6px 30px rgba(0,0,0,.09);
+        transition: transform .3s, box-shadow .3s;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .cat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 45px rgba(0,0,0,.14);
+        }
+
+    /* Portada */
+    .cat-cover {
+        position: relative;
+        height: 340px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f8f0e3, #f0ddb5);
+    }
+
+        .cat-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform .4s;
+        }
+
+
+    /* Badge de tipo */
+    .cat-badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: linear-gradient(135deg, #dfa12a, #c8891a);
+        color: #fff;
+        font-size: .75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 5px 14px;
+        border-radius: 50px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+
+    /* Placeholder sin portada */
+    .cat-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #c8891a;
+        gap: 12px;
+    }
+
+        .cat-placeholder i {
+            font-size: 4rem;
+            opacity: .5;
+        }
+
+        .cat-placeholder span {
+            font-size: .85rem;
+            color: #aaa;
+        }
+
+    /* Cuerpo */
+    .cat-body {
+        padding: 1.6rem 1.8rem 1.8rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cat-tipo {
+        font-size: .75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #c8891a;
+        margin-bottom: .3rem;
+    }
+
+    .cat-titulo {
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: #2d2d2d;
+        text-transform: uppercase;
+        margin-bottom: .3rem;
+    }
+
+    .cat-desc {
+        font-size: .9rem;
+        color: #888;
+        margin-bottom: 1.4rem;
+        flex: 1;
+    }
+
+    .cat-fecha {
+        font-size: .75rem;
+        color: #bbb;
+        margin-bottom: 1.2rem;
+    }
+
+    .cat-actions {
+        display: flex;
+        gap: .8rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-ver {
+        background: linear-gradient(135deg, #dfa12a, #c8891a);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 26px;
+        font-size: .85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        text-decoration: none;
+        transition: opacity .2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .btn-ver:hover {
+            opacity: .85;
+            color: #fff;
+        }
+
+    .btn-descargar {
+        background: transparent;
+        border: 2px solid #dfa12a;
+        color: #dfa12a;
+        border-radius: 50px;
+        padding: 8px 22px;
+        font-size: .85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        text-decoration: none;
+        transition: all .2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .btn-descargar:hover {
+            background: #dfa12a;
+            color: #fff;
+        }
+
+    .btn-sin-pdf {
+        opacity: .4;
+        pointer-events: none;
+        background: linear-gradient(135deg, #dfa12a, #c8891a);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 26px;
+        font-size: .85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    /* Franja inferior degradada */
+    .cat-footer {
+        height: 7px;
+        background: linear-gradient(90deg, #dfa12a, #c02873);
+    }
+
+    /* Actualización badge */
+    .update-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fff3cd;
+        color: #856404;
+        border-radius: 50px;
+        padding: 4px 12px;
+        font-size: .75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<!-- Hero -->
+<section class="catalogo-hero">
+    <h1>Nuestro Catálogo Completo</h1>
+    <p>Descubrí nuestra amplia gama de productos de calidad para tu negocio.</p>
+</section>
+
+<!-- Catálogos -->
+<section class="catalogo-section">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+
+            @* ── Catálogo General ── *@
+            <div class="col-lg-5 col-md-6">
+                <div class="cat-card">
+                    <div class="cat-cover">
+                        <span class="cat-badge">Catálogo General</span>
+                        @if (!string.IsNullOrEmpty(general?.Imagen))
+                        {
+                            <img src="@general.Imagen" alt="Catálogo General" />
+                        }
+                        else
+                        {
+                            <div class="cat-placeholder">
+                                <i class="bi bi-book"></i>
+                                <span>Portada no disponible</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-tipo">ERCO S.R.L.</div>
+                        <div class="cat-titulo">Catálogo General</div>
+                        @if (!string.IsNullOrEmpty(general?.Descripcion))
+                        {
+                            <div class="cat-desc">@general.Descripcion</div>
+                        }
+                        @if (general?.FechaActualizacion != null)
+                        {
+                            <div class="cat-fecha">
+                                <i class="bi bi-clock me-1"></i>
+                                Actualizado: @general.FechaActualizacion.ToString("MMMM yyyy")
+                            </div>
+                        }
+                        <div class="cat-actions">
+                            @if (!string.IsNullOrEmpty(general?.Pdf))
+                            {
+                                <a href="@general.Pdf" target="_blank" class="btn-ver">
+                                    <i class="bi bi-eye"></i> Ver Catálogo
+                                </a>
+                                <a href="@general.Pdf" download class="btn-descargar">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="btn-sin-pdf">
+                                    <i class="bi bi-eye"></i> Próximamente
+                                </span>
+                            }
+                        </div>
+                    </div>
+                    <div class="cat-footer"></div>
+                </div>
+            </div>
+
+            @* ── Catálogo Unilever ── *@
+            <div class="col-lg-5 col-md-6">
+                <div class="cat-card">
+                    <div class="cat-cover">
+                        <span class="cat-badge">Unilever</span>
+                        @if (!string.IsNullOrEmpty(unilever?.Imagen))
+                        {
+                            <img src="@unilever.Imagen" alt="Catálogo Unilever" />
+                        }
+                        else
+                        {
+                            <div class="cat-placeholder">
+                                <i class="bi bi-book"></i>
+                                <span>Portada no disponible</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-tipo">Unilever</div>
+                        <div class="cat-titulo">Catálogo Unilever</div>
+                        @if (!string.IsNullOrEmpty(unilever?.Descripcion))
+                        {
+                            <div class="cat-desc">@unilever.Descripcion</div>
+                        }
+                        @if (unilever?.FechaActualizacion != null)
+                        {
+                            <div class="cat-fecha">
+                                <i class="bi bi-clock me-1"></i>
+                                Actualizado: @unilever.FechaActualizacion.ToString("MMMM yyyy")
+                            </div>
+                        }
+                        <div class="cat-actions">
+                            @if (!string.IsNullOrEmpty(unilever?.Pdf))
+                            {
+                                <a href="@unilever.Pdf" target="_blank" class="btn-ver">
+                                    <i class="bi bi-eye"></i> Ver Catálogo
+                                </a>
+                                <a href="@unilever.Pdf" download class="btn-descargar">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="btn-sin-pdf">
+                                    <i class="bi bi-eye"></i> Próximamente
+                                </span>
+                            }
+                        </div>
+                    </div>
+                    <div class="cat-footer"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

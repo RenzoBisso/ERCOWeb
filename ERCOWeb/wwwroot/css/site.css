@@ -1,4 +1,4 @@
-
+﻿
 /* =============================================================================
    1. VARIABLES GLOBALES
    ============================================================================= */
@@ -11,12 +11,777 @@
     --accent-violet: #af1c65;
 }
 
+/* ──────────────────────────────────────────────────────────────────────────────
+   NAVIDAD
+   Paleta: verde pino #2d5a27 · rojo carmesí #c0392b · dorado #d4af37 · blanco nieve
+   ────────────────────────────────────────────────────────────────────────────── */
 
-/* =============================================================================
+body.theme-christmas {
+    --accent-gold: #d4af37;
+    --accent-pink: #c0392b;
+    background-color: #faf8f4;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px), radial-gradient(circle at 15% 5%, rgba(45, 90, 39, 0.06) 0%, transparent 40%), radial-gradient(circle at 85% 95%, rgba(192, 57, 43, 0.05) 0%, transparent 40%);
+    background-size: 24px 24px, 100% 100%, 100% 100%;
+}
+
+    /* ── Navbar ── */
+    body.theme-christmas .navbar {
+        background: linear-gradient(180deg, #1c3a19 0%, #2d5a27 100%) !important;
+        border-bottom: 5px solid #d4af37;
+        box-shadow: 0 3px 16px rgba(28, 58, 25, 0.35);
+    }
+
+        body.theme-christmas .navbar a {
+            color: #f0ead8 !important;
+            font-weight: 600;
+        }
+
+            body.theme-christmas .navbar a:hover {
+                color: #d4af37 !important;
+            }
+
+    /* ── Estrella de navidad — esquina superior derecha ── */
+    body.theme-christmas::before {
+        content: "⭐";
+        position: fixed;
+        top: -10px;
+        right: 20px;
+        font-size: 5rem;
+        opacity: 0.18;
+        pointer-events: none;
+        z-index: 1000;
+        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        animation: twinkle 3s ease-in-out infinite;
+    }
+
+    /* ── Árbol de navidad — marca de agua centrada ── */
+    body.theme-christmas::after {
+        content: "🎄";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20rem;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.18;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.32;
+        transform: scale(1.08);
+    }
+}
+
+/* ── Brand cards: caja de regalo ── */
+body.theme-christmas .brand-card {
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    border-radius: 14px;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 6px 0 #c0392b, 0 8px 20px rgba(192, 57, 43, 0.12);
+}
+
+    /* Cinta de regalo horizontal */
+    body.theme-christmas .brand-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #2d5a27, #d4af37, #c0392b, #d4af37, #2d5a27);
+        pointer-events: none;
+    }
+
+    /* Copo de nieve decorativo */
+    body.theme-christmas .brand-card::after {
+        content: "❄";
+        position: absolute;
+        bottom: 8px;
+        right: 10px;
+        font-size: 1rem;
+        color: #74acdf;
+        opacity: 0.35;
+        pointer-events: none;
+    }
+
+    body.theme-christmas .brand-card:hover {
+        border-color: #d4af37;
+        box-shadow: 0 6px 0 #2d5a27, 0 14px 30px rgba(45, 90, 39, 0.2);
+        background-color: #fffdf8;
+        transform: translateY(-7px);
+    }
+
+/* ── Cards generales ── */
+body.theme-christmas .card {
+    border-top: 5px solid #2d5a27;
+    background: #ffffff;
+    box-shadow: 0 4px 18px rgba(45, 90, 39, 0.1);
+    border-radius: 14px;
+}
+
+    body.theme-christmas .card:nth-child(even) {
+        border-top-color: #c0392b;
+    }
+
+    body.theme-christmas .card:nth-child(3n) {
+        border-top-color: #d4af37;
+    }
+
+body.theme-christmas .card-title {
+    color: #1c3a19;
+}
+
+body.theme-christmas .card-text {
+    color: #4a6a44;
+}
+
+/* ── Íconos ── */
+body.theme-christmas .icon-circle {
+    background-color: rgba(45, 90, 39, 0.12);
+    color: #2d5a27;
+}
+
+/* ── Gradientes de título ── */
+body.theme-christmas .border-gradient-bottom::after {
+    background: linear-gradient(to right, #2d5a27, #d4af37, #c0392b);
+}
+
+body.theme-christmas .border-radient {
+    border-image-source: linear-gradient(to right, #2d5a27, #d4af37);
+}
+
+/* ── Divider ── */
+body.theme-christmas .divider-colors span:nth-child(1) {
+    background-color: #2d5a27;
+}
+
+body.theme-christmas .divider-colors span:nth-child(2) {
+    background-color: #d4af37;
+}
+
+body.theme-christmas .divider-colors span:nth-child(3) {
+    background-color: #c0392b;
+}
+
+body.theme-christmas .divider-colors span:nth-child(4) {
+    background-color: #2d5a27;
+}
+
+/* ── Botones ── */
+body.theme-christmas .btn-submit,
+body.theme-christmas .btn-detalle {
+    background: linear-gradient(135deg, #c0392b, #922b21);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 4px 14px rgba(192, 57, 43, 0.35);
+}
+
+    body.theme-christmas .btn-submit:hover,
+    body.theme-christmas .btn-detalle:hover {
+        background: linear-gradient(135deg, #2d5a27, #1e3d1a);
+        box-shadow: 0 6px 18px rgba(45, 90, 39, 0.4);
+        transform: translateY(-2px);
+        color: #fff;
+    }
+
+/* ── Footer ── */
+body.theme-christmas .footer-custom {
+    background: linear-gradient(180deg, #1c3a19 0%, #0f2210 100%);
+}
+
+    body.theme-christmas .footer-custom::before,
+    body.theme-christmas .footer-custom::after {
+        background: linear-gradient(to right, #2d5a27, #d4af37, #c0392b, #d4af37, #2d5a27);
+        height: 8px;
+    }
+
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   HALLOWEEN
+   Paleta: gris carbón #252525 · naranja fuego #f07020 · violeta #6a0dad
+   Fondo gris medio: los logos se ven con sus colores reales
+   ────────────────────────────────────────────────────────────────────────────── */
+
+body.theme-halloween {
+    background-color: #252525;
+    color: #f0ece6;
+    background-image: radial-gradient(ellipse at 0% 0%, rgba(106, 13, 173, 0.20) 0%, transparent 40%), radial-gradient(ellipse at 100% 100%, rgba(240, 112, 32, 0.16) 0%, transparent 40%), radial-gradient(ellipse at 50% 50%, rgba(106, 13, 173, 0.06) 0%, transparent 60%);
+}
+
+    /* ── Navbar: negro con glow violeta ── */
+    body.theme-halloween .navbar {
+        background: linear-gradient(180deg, #1a1a1a 0%, #222222 100%) !important;
+        border-bottom: 4px solid #6a0dad;
+        box-shadow: 0 3px 20px rgba(106, 13, 173, 0.4);
+    }
+
+        body.theme-halloween .navbar a {
+            color: #e8dff0 !important;
+            font-weight: 600;
+        }
+
+            body.theme-halloween .navbar a:hover {
+                color: #f07020 !important;
+                text-shadow: 0 0 8px rgba(240, 112, 32, 0.6);
+            }
+
+    /* ── Telaraña — esquina superior izquierda ── */
+    body.theme-halloween::before {
+        content: "🕸️";
+        position: fixed;
+        top: -15px;
+        left: -15px;
+        font-size: 10rem;
+        opacity: 0.12;
+        pointer-events: none;
+        z-index: 1000;
+        transform: rotate(-5deg);
+        filter: drop-shadow(0 0 6px rgba(106, 13, 173, 0.4));
+    }
+
+    /* ── Calabaza — marca de agua centrada ── */
+    body.theme-halloween::after {
+        content: "🎃";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18rem;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* ── Brand cards: ventana iluminada de casa embrujada ── */
+    body.theme-halloween .brand-card {
+        background-color: #333333;
+        border: 1px solid rgba(106, 13, 173, 0.45);
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 0 rgba(106, 13, 173, 0.5), 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+        /* Línea superior naranja→violeta */
+        body.theme-halloween .brand-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #6a0dad, #f07020, #6a0dad);
+            pointer-events: none;
+        }
+
+        /* Detalle fantasma */
+        body.theme-halloween .brand-card::after {
+            content: "👻";
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+            font-size: 0.9rem;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        body.theme-halloween .brand-card:hover {
+            border-color: #f07020;
+            background-color: #3d3d3d;
+            box-shadow: 0 6px 0 #f07020, 0 12px 28px rgba(240, 112, 32, 0.3);
+            transform: translateY(-6px);
+        }
+
+    /* Logos con colores reales — solo drop-shadow naranja sutil */
+    body.theme-halloween .brand-logo {
+        opacity: 0.88;
+        transition: opacity 0.3s ease, filter 0.3s ease;
+        filter: drop-shadow(0 0 3px rgba(240, 112, 32, 0.15));
+    }
+
+    body.theme-halloween .brand-card:hover .brand-logo {
+        opacity: 1;
+        filter: drop-shadow(0 0 7px rgba(240, 112, 32, 0.55));
+    }
+
+    /* ── Cards generales ── */
+    body.theme-halloween .card {
+        background-color: #2e2e2e;
+        border: 1px solid rgba(106, 13, 173, 0.3);
+        color: #f0ece6;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        border-radius: 14px;
+    }
+
+        body.theme-halloween .card:nth-child(even) {
+            border-color: rgba(240, 112, 32, 0.25);
+        }
+
+    body.theme-halloween .card-title {
+        color: #f07020;
+    }
+
+    body.theme-halloween .card-text {
+        color: #b0a898;
+    }
+
+    /* ── Íconos ── */
+    body.theme-halloween .icon-circle {
+        background-color: rgba(106, 13, 173, 0.2);
+        color: #c060e0;
+    }
+
+    /* ── Gradientes de título ── */
+    body.theme-halloween .border-gradient-bottom::after {
+        background: linear-gradient(to right, #6a0dad, #f07020);
+    }
+
+    body.theme-halloween .border-radient {
+        border-image-source: linear-gradient(to right, #6a0dad, #f07020);
+    }
+
+    /* ── Divider ── */
+    body.theme-halloween .divider-colors span:nth-child(1) {
+        background-color: #6a0dad;
+    }
+
+    body.theme-halloween .divider-colors span:nth-child(2) {
+        background-color: #f07020;
+    }
+
+    body.theme-halloween .divider-colors span:nth-child(3) {
+        background-color: #6a0dad;
+    }
+
+    body.theme-halloween .divider-colors span:nth-child(4) {
+        background-color: #f07020;
+    }
+
+    /* ── Botones ── */
+    body.theme-halloween .btn-submit,
+    body.theme-halloween .btn-detalle {
+        background: linear-gradient(135deg, #f07020, #c05010);
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        box-shadow: 0 4px 14px rgba(240, 112, 32, 0.4);
+    }
+
+        body.theme-halloween .btn-submit:hover,
+        body.theme-halloween .btn-detalle:hover {
+            background: linear-gradient(135deg, #6a0dad, #4a0080);
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.5);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+    /* ── Footer ── */
+    body.theme-halloween .footer-custom {
+        background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    }
+
+        body.theme-halloween .footer-custom::before,
+        body.theme-halloween .footer-custom::after {
+            background: linear-gradient(to right, #6a0dad, #f07020, #6a0dad);
+            height: 8px;
+        }
+
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   PASCUAS
+   Paleta: blanco suave · amarillo manteca #fce38a · verde menta #a8e6cf
+           rosa coral #f38181 · lavanda #c3aed6
+   ────────────────────────────────────────────────────────────────────────────── */
+
+body.theme-easter {
+    background-color: #fdf5ff;
+    background-image: radial-gradient(circle, rgba(252, 227, 138, 0.5) 1.5px, transparent 1.5px), radial-gradient(circle, rgba(168, 230, 207, 0.4) 1.5px, transparent 1.5px), radial-gradient(circle at 10% 10%, rgba(243, 129, 129, 0.08) 0%, transparent 40%), radial-gradient(circle at 90% 90%, rgba(195, 174, 214, 0.10) 0%, transparent 40%);
+    background-size: 32px 32px, 16px 16px, 100% 100%, 100% 100%;
+    background-position: 0 0, 16px 16px, 0 0, 0 0;
+}
+
+    /* ── Navbar: blanco con franja pastel arcoíris ── */
+    body.theme-easter .navbar {
+        background: #ffffff !important;
+        border-bottom: 5px solid transparent;
+        border-image: linear-gradient(to right, #fce38a, #a8e6cf, #f38181, #c3aed6, #fce38a) 1;
+        box-shadow: 0 3px 16px rgba(195, 174, 214, 0.2);
+    }
+
+        body.theme-easter .navbar a {
+            color: #5a3a6a !important;
+            font-weight: 600;
+        }
+
+            body.theme-easter .navbar a:hover {
+                color: #f38181 !important;
+            }
+
+    /* ── Conejo — esquina superior izquierda ── */
+    body.theme-easter::before {
+        content: "🐰";
+        position: fixed;
+        top: 5px;
+        left: 10px;
+        font-size: 4rem;
+        opacity: 0.2;
+        pointer-events: none;
+        z-index: 1000;
+        animation: bunny_bounce 2.5s ease-in-out infinite;
+    }
+
+    /* ── Pollito — marca de agua centrada ── */
+    body.theme-easter::after {
+        content: "🐣";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18rem;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+@keyframes bunny_bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ── Brand cards: huevo de pascua ── */
+body.theme-easter .brand-card {
+    border-radius: 50% 50% 44% 44% / 58% 58% 42% 42%;
+    border: 3px solid #fce38a;
+    background: #ffffff;
+    position: relative;
+    overflow: visible;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 0 rgba(243, 129, 129, 0.4), 0 10px 24px rgba(243, 129, 129, 0.15);
+}
+
+    body.theme-easter .brand-card:nth-child(2n) {
+        border-color: #a8e6cf;
+        box-shadow: 0 8px 0 rgba(168, 230, 207, 0.6), 0 10px 24px rgba(168, 230, 207, 0.2);
+    }
+
+    body.theme-easter .brand-card:nth-child(3n) {
+        border-color: #f38181;
+        box-shadow: 0 8px 0 rgba(243, 129, 129, 0.5), 0 10px 24px rgba(243, 129, 129, 0.18);
+    }
+
+    body.theme-easter .brand-card:nth-child(4n) {
+        border-color: #c3aed6;
+        box-shadow: 0 8px 0 rgba(195, 174, 214, 0.6), 0 10px 24px rgba(195, 174, 214, 0.2);
+    }
+
+    body.theme-easter .brand-card:hover {
+        transform: scale(1.07) rotate(2deg);
+        border-color: #f38181;
+        box-shadow: 0 14px 32px rgba(243, 129, 129, 0.28);
+    }
+
+/* ── Cards generales ── */
+body.theme-easter .card {
+    border-top: 5px solid #fce38a;
+    background: #fffdf9;
+    box-shadow: 0 4px 18px rgba(195, 174, 214, 0.15);
+    border-radius: 16px;
+}
+
+    body.theme-easter .card:nth-child(2n) {
+        border-top-color: #a8e6cf;
+    }
+
+    body.theme-easter .card:nth-child(3n) {
+        border-top-color: #f38181;
+    }
+
+    body.theme-easter .card:nth-child(4n) {
+        border-top-color: #c3aed6;
+    }
+
+body.theme-easter .card-title {
+    color: #5a3a6a;
+}
+
+body.theme-easter .card-text {
+    color: #8a6a8a;
+}
+
+/* ── Íconos ── */
+body.theme-easter .icon-circle {
+    background-color: rgba(243, 129, 129, 0.15);
+    color: #d06080;
+}
+
+/* ── Gradientes de título ── */
+body.theme-easter .border-gradient-bottom::after {
+    background: linear-gradient(to right, #f38181, #fce38a, #a8e6cf, #c3aed6);
+}
+
+body.theme-easter .border-radient {
+    border-image-source: linear-gradient(to right, #f38181, #fce38a, #a8e6cf);
+}
+
+/* ── Divider ── */
+body.theme-easter .divider-colors span:nth-child(1) {
+    background-color: #fce38a;
+}
+
+body.theme-easter .divider-colors span:nth-child(2) {
+    background-color: #a8e6cf;
+}
+
+body.theme-easter .divider-colors span:nth-child(3) {
+    background-color: #f38181;
+}
+
+body.theme-easter .divider-colors span:nth-child(4) {
+    background-color: #c3aed6;
+}
+
+/* ── Botones ── */
+body.theme-easter .btn-submit,
+body.theme-easter .btn-detalle {
+    background: linear-gradient(135deg, #f38181, #e06060);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 4px 14px rgba(243, 129, 129, 0.4);
+}
+
+    body.theme-easter .btn-submit:hover,
+    body.theme-easter .btn-detalle:hover {
+        background: linear-gradient(135deg, #78c9a8, #a8e6cf);
+        color: #2a2a2a;
+        box-shadow: 0 6px 18px rgba(168, 230, 207, 0.5);
+        transform: translateY(-2px);
+    }
+
+/* ── Footer ── */
+body.theme-easter .footer-custom {
+    background: linear-gradient(180deg, #3a2d4a 0%, #2a1e38 100%);
+}
+
+    body.theme-easter .footer-custom::before,
+    body.theme-easter .footer-custom::after {
+        background: linear-gradient(to right, #fce38a, #a8e6cf, #f38181, #c3aed6, #fce38a);
+        height: 8px;
+    }
+
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   FECHA PATRIA (Argentina)
+   Paleta: celeste oficial #74acdf · blanco · dorado sol #fcbf49
+   Inspirado en estética festiva con escarapela, bandera y confetti
+   ────────────────────────────────────────────────────────────────────────────── */
+
+body.theme-patria {
+    background-color: #eaf4fb;
+    /* Franjas de bandera muy sutiles como fondo de página */
+    background-image: repeating-linear-gradient( 180deg, rgba(116, 172, 223, 0.12) 0px, rgba(116, 172, 223, 0.12) 60px, transparent 60px, transparent 120px );
+}
+
+    /* ── Navbar ── */
+    body.theme-patria .navbar {
+        background: linear-gradient(180deg, #ffffff 0%, #f0f8ff 100%) !important;
+        border-bottom: 5px solid #74acdf;
+        box-shadow: 0 3px 16px rgba(116, 172, 223, 0.25);
+    }
+
+        body.theme-patria .navbar a {
+            color: #1a3a5c;
+            font-weight: 600;
+        }
+
+            body.theme-patria .navbar a:hover {
+                color: #4a8abf;
+            }
+
+    /* ── Escarapela grande — esquina superior izquierda ── */
+    body.theme-patria::before {
+        content: "";
+        position: fixed;
+        top: -60px;
+        left: -60px;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: conic-gradient( #74acdf 0deg 45deg, #ffffff 45deg 90deg, #74acdf 90deg 135deg, #ffffff 135deg 180deg, #74acdf 180deg 225deg, #ffffff 225deg 270deg, #74acdf 270deg 315deg, #ffffff 315deg 360deg );
+        box-shadow: inset 0 0 0 30px #74acdf, inset 0 0 0 55px #ffffff, inset 0 0 0 75px #74acdf, 0 4px 20px rgba(116, 172, 223, 0.4);
+        z-index: 1000;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+
+    /* ── Sol de Mayo — marca de agua centrada ── */
+    body.theme-patria::after {
+        content: "☀️";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18rem;
+        opacity: 0.04;
+        pointer-events: none;
+        z-index: 0;
+        animation: rotate_sun 90s linear infinite;
+    }
+
+@keyframes rotate_sun {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ── Hero / Banner especial ── */
+body.theme-patria .carousel-gradient,
+body.theme-patria .hero-section {
+    border-bottom: 6px solid;
+    border-image: linear-gradient(to right, #74acdf 0%, #74acdf 33%, #ffffff 33%, #ffffff 66%, #74acdf 66%, #74acdf 100%) 1;
+}
+
+/* ── Brand cards ── */
+body.theme-patria .brand-card {
+    border: none;
+    border-radius: 10px;
+    border-left: 8px solid #74acdf;
+    border-right: 8px solid #74acdf;
+    box-shadow: 0 8px 0 #fcbf49, 0 6px 20px rgba(116, 172, 223, 0.18);
+    background: #ffffff;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Confetti decorativo en la esquina de cada card */
+    body.theme-patria .brand-card::after {
+        content: "🎗️";
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        font-size: 1rem;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    body.theme-patria .brand-card:hover {
+        border-left-color: #fcbf49;
+        border-right-color: #fcbf49;
+        box-shadow: 0 8px 0 #74acdf, 0 14px 28px rgba(116, 172, 223, 0.25);
+        background-color: #f5fbff;
+        transform: translateY(-6px);
+    }
+
+/* ── Cards generales ── */
+body.theme-patria .card {
+    border-top: 5px solid #74acdf;
+    background: #ffffff;
+    box-shadow: 0 4px 18px rgba(116, 172, 223, 0.13);
+    border-radius: 14px;
+}
+
+    body.theme-patria .card:nth-child(even) {
+        border-top-color: #fcbf49;
+    }
+
+body.theme-patria .card-title {
+    color: #1a3a5c;
+}
+
+body.theme-patria .card-text {
+    color: #4a6a8a;
+}
+
+/* ── Íconos ── */
+body.theme-patria .icon-circle {
+    background-color: rgba(116, 172, 223, 0.15);
+    color: #4a8abf;
+}
+
+/* ── Gradientes de título ── */
+body.theme-patria .border-gradient-bottom::after {
+    background: linear-gradient(to right, #74acdf, #fcbf49, #74acdf);
+}
+
+body.theme-patria .border-radient {
+    border-image-source: linear-gradient(to right, #74acdf, #fcbf49);
+}
+
+/* ── Botones ── */
+body.theme-patria .btn-submit,
+body.theme-patria .btn-detalle {
+    background: linear-gradient(135deg, #4a8abf, #74acdf);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 4px 12px rgba(116, 172, 223, 0.35);
+}
+
+    body.theme-patria .btn-submit:hover,
+    body.theme-patria .btn-detalle:hover {
+        background: linear-gradient(135deg, #e0a030, #fcbf49);
+        color: #1a1a1a;
+        box-shadow: 0 6px 18px rgba(252, 191, 73, 0.45);
+        transform: translateY(-2px);
+    }
+
+/* ── Divider de colores ── */
+body.theme-patria .divider-colors span:nth-child(1) {
+    background-color: #74acdf;
+}
+
+body.theme-patria .divider-colors span:nth-child(2) {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+}
+
+body.theme-patria .divider-colors span:nth-child(3) {
+    background-color: #74acdf;
+}
+
+body.theme-patria .divider-colors span:nth-child(4) {
+    background-color: #fcbf49;
+}
+
+/* ── Footer ── */
+body.theme-patria .footer-custom {
+    background: linear-gradient(180deg, #1a3a5c 0%, #0e2440 100%);
+}
+
+    body.theme-patria .footer-custom::before,
+    body.theme-patria .footer-custom::after {
+        background: linear-gradient(to right, #74acdf 0%, #74acdf 33%, #ffffff 33%, #ffffff 66%, #74acdf 66%, #74acdf 100% );
+        height: 8px;
+    }
+
+
+    /* =============================================================================
    2. BASE / RESET
    ============================================================================= */
 
-html {
+    html {
     font-size: 14px;
     position: relative;
     min-height: 100%;
@@ -126,7 +891,7 @@ a {
     background-size: cover;
     background-position: center;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Esto mantiene la proporci�n de una pantalla est�ndar */
+    aspect-ratio: 16 / 9; /* Esto mantiene la proporción de una pantalla estándar */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,7 +913,7 @@ a {
    5. NAVBAR
    ============================================================================= */
 
-/* 1. Base del enlace con transici�n */
+/* 1. Base del enlace con transición */
 .navbar a {
     color: black;
     font-weight: 500;
@@ -161,10 +926,10 @@ a {
     /* 2. Efecto Hover: Cambio de color + ligero levantamiento */
     .navbar a:hover {
         color: var(--accent-gold);
-        transform: translateY(-2px); /* Se eleva apenas 2 p�xeles */
+        transform: translateY(-2px); /* Se eleva apenas 2 píxeles */
     }
 
-/* 3. Animaci�n de entrada para el men� m�vil */
+/* 3. Animación de entrada para el menú móvil */
 @media (max-width: 991px) {
     .navbar-collapse {
         background-color: #fff;
@@ -172,7 +937,7 @@ a {
         border-radius: 8px;
         margin-top: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        /* Animaci�n sutil de aparici�n */
+        /* Animación sutil de aparición */
         animation: slideDown 0.4s ease forwards;
     }
 
@@ -198,7 +963,7 @@ a {
         }
 }
 
-/* Definici�n de las animaciones */
+/* Definición de las animaciones */
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -235,7 +1000,7 @@ a {
     overflow: hidden; /* Para efectos de brillo si decides agregarlos luego */
 }
 
-/* 1. Bot�n Primario */
+/* 1. Botón Primario */
 .btn-primary {
     color: black;
     background-color: var(--accent-blue);
@@ -243,9 +1008,9 @@ a {
 }
 
     .btn-primary:hover {
-        background-color: #1a6cc0; /* Un tono ligeramente m�s claro o saturado */
-        transform: translateY(-1px); /* Elevaci�n m�nima */
-        box-shadow: 0 4px 8px rgba(24, 97, 172, 0.3); /* Sombra suave del color del bot�n */
+        background-color: #1a6cc0; /* Un tono ligeramente más claro o saturado */
+        transform: translateY(-1px); /* Elevación mínima */
+        box-shadow: 0 4px 8px rgba(24, 97, 172, 0.3); /* Sombra suave del color del botón */
     }
 
     .btn-primary:active {
@@ -253,7 +1018,7 @@ a {
         filter: brightness(0.9);
     }
 
-/* 2. Bot�n Submit (El dorado) */
+/* 2. Botón Submit (El dorado) */
 .btn-submit {
     background-color: #dfaa30;
     border: none;
@@ -278,7 +1043,7 @@ a {
     color: #fff;
     background-color: var(--accent-blue);
     border-color: #1861ac;
-    /* Animaci�n de entrada cuando se activa */
+    /* Animación de entrada cuando se activa */
     animation: pulseActive 0.4s ease-out;
 }
 
@@ -295,7 +1060,7 @@ a {
         transform: scale(1);
     }
 }
-/* Bot�n principal canal WPP (desde _Layout inline) */
+/* Botón principal canal WPP (desde _Layout inline) */
 .btn-lg:hover {
     background-color: #a01d5d !important;
     transform: translateY(-3px);
@@ -432,17 +1197,30 @@ a {
 
 
 /* =============================================================================
-   9. LOGOS / IM�GENES
+   9. LOGOS / IMÁGENES
    ============================================================================= */
 
+.brand-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 10px;
+}
+
 .brand-logo {
-    max-height: 70px;
+    /* Forzamos a que el logo use el espacio del contenedor de forma inteligente */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Estos límites aseguran que ningún logo se dispare en tamaño */
+    max-height: 200px;
+    max-width: 260px;
     opacity: 0.7;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .brand-card:hover .brand-logo {
-    filter: grayscale(0%);
     opacity: 1;
 }
 
@@ -496,7 +1274,7 @@ a {
 }
 
 /* =============================================================================
-   10. �CONOS Y ELEMENTOS DECORATIVOS
+   10. ÍCONOS Y ELEMENTOS DECORATIVOS
    ============================================================================= */
 
 .icon-circle {
@@ -553,7 +1331,7 @@ a {
 
 
 /* =============================================================================
-   11. BOT�N / BADGE DE PRODUCTOS
+   11. BOTÓN / BADGE DE PRODUCTOS
    ============================================================================= */
 
 .btn-detalle {
@@ -611,7 +1389,7 @@ a {
 
 
 /* =============================================================================
-   13. BOT�N FLOTANTE WHATSAPP
+   13. BOTÓN FLOTANTE WHATSAPP
    ============================================================================= */
 
 .whatsapp-btn {
@@ -763,7 +1541,7 @@ a {
 
 
 /* =============================================================================
-   17. ANIMACI�N DE LOGO (splash intro)
+   17. ANIMACIÓN DE LOGO (splash intro)
    ============================================================================= */
 
 .logo-animation-container {
@@ -794,10 +1572,12 @@ a {
     white-space: nowrap;
     transition: width 1s ease, opacity 0.5s ease;
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .logo-text {
-    width: 180px;
+    width: 500px;
 }
 
 .start-anim .logo-symbol {
@@ -805,7 +1585,7 @@ a {
 }
 
 .start-anim .logo-text-container {
-    width: 180px;
+    width: 700px;
     opacity: 1;
     transition-delay: 0.8s;
 }

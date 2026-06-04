@@ -16,17 +16,26 @@ namespace ERCOWeb.Controllers
         }
         public async Task<IActionResult> IndexAsync()
         {
-            var listaSucursales = await _context.Sucursals.ToListAsync();
-            var listaZonas = await _context.Zonas.ToListAsync(); 
+            try
+            {
+                var listaSucursales = await _context.Sucursals.ToListAsync();
+                var listaZonas = await _context.Zonas.ToListAsync();
 
-            var modeloTupla = (sucursales: listaSucursales, zonas: listaZonas);
+                var modeloTupla = (sucursales: listaSucursales, zonas: listaZonas);
 
-            return View(modeloTupla);
+                return View(modeloTupla);
+            }
+            catch (Exception ex) { 
+                return View(ex);
+            }
+
         }
         [HttpGet]
         public JsonResult GetSucursales()
         {
-            var data = _context.Sucursals
+            try
+            {
+                            var data = _context.Sucursals
                 .Where(s => s.Latitud != null && s.Longitud != null)
                 .Select(s => new {
                     nombre = s.Nombre,
@@ -36,6 +45,12 @@ namespace ERCOWeb.Controllers
                 .ToList();
 
             return Json(data);
+            }
+            catch
+            {
+                return Json(null);
+            }
+
         }
     }
 }

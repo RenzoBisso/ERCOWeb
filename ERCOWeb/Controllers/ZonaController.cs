@@ -12,22 +12,33 @@ namespace ERCOWeb.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> IndexAsync()
-        {
-            return View(await _context.Zonas.ToListAsync());
-        }
-        [HttpGet]
-        public JsonResult GetZonas()
-        {
-            var data = _context.Zonas
-                .Where(s=>s.Estado!=false)
-                .Select(s => new {
-                    nombre = s.Nombre,
-                    estado = s.Estado,
-                })
-                .ToList();
 
-            return Json(data);
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            try
+            {
+                var sucursales = await _context.Zonas.ToListAsync();
+
+                var listaZonas = await _context.Zonas.ToListAsync();
+
+                foreach (var zona in listaZonas)
+                {
+                    if (zona.Nombre != null)
+                    {
+                        zona.Nombre = zona.Nombre.Trim();
+                    }
+                }
+
+                var zonasOrdenadas = listaZonas
+                    .OrderBy(z => z.Nombre)
+                    .ToList();
+                return View((sucursales, zonasOrdenadas));
+            }
+            catch (Exception)
+            {
+                return View((new List<Sucursal>(), new List<Zona>()));
+            }
         }
     }
 }

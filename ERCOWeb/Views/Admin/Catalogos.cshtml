@@ -1,0 +1,151 @@
+﻿@model List<ERCOWeb.Models.Catalogo>
+@{
+    ViewData["Title"] = "Gestión de Catálogos";
+}
+
+<style>
+    .cat-admin-card {
+        border-radius: 20px;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,.07);
+        transition: box-shadow .2s;
+    }
+
+        .cat-admin-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,.12);
+        }
+
+    .cat-header-strip {
+        height: 6px;
+        background: linear-gradient(90deg, #dfa12a, #c02873);
+    }
+
+    .cat-preview {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 12px;
+        background: #f5f0e8;
+    }
+
+    .cat-preview-placeholder {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #fdf3e3, #f0ddb5);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #dfa12a;
+        font-size: 3rem;
+        opacity: .5;
+    }
+
+    .tipo-badge-general {
+        background: #dfa12a;
+        color: #fff;
+    }
+
+    .tipo-badge-unilever {
+        background: #c02873;
+        color: #fff;
+    }
+</style>
+
+<div class="container-fluid py-4 px-lg-5">
+    <div class="mb-5">
+        <h1 class="fw-bold h2 mb-1">Gestión de Catálogos</h1>
+        <p class="text-muted small mb-0">
+            Actualizá el PDF y la imagen de portada de cada catálogo mensualmente.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var cat in Model)
+        {
+            var esUnilever = cat.Tipo == "Unilever";
+            var badgeClass = esUnilever ? "tipo-badge-unilever" : "tipo-badge-general";
+
+            <div class="col-lg-6">
+                <div class="card cat-admin-card">
+                    <div class="cat-header-strip"></div>
+                    <div class="card-body p-4">
+
+                        <!-- Encabezado -->
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div>
+                                <span class="badge rounded-pill px-3 py-2 @badgeClass mb-2">
+                                    @cat.Tipo
+                                </span>
+                                <h4 class="fw-bold mb-0">Catálogo @cat.Tipo</h4>
+                                @if (!string.IsNullOrEmpty(cat.Descripcion))
+                                {
+                                    <p class="text-muted small mb-0 mt-1">@cat.Descripcion</p>
+                                }
+                            </div>
+                            <div class="text-end text-muted small">
+                                <i class="bi bi-clock me-1"></i>
+                                Actualizado:<br />
+                                <strong>@cat.FechaActualizacion.ToString("dd/MM/yyyy")</strong>
+                            </div>
+                        </div>
+
+                        <!-- Preview imagen -->
+                        <div class="mb-4">
+                            @if (!string.IsNullOrEmpty(cat.Imagen))
+                            {
+                                <img src="@cat.Imagen" alt="Portada @cat.Tipo" class="cat-preview" />
+                            }
+                            else
+                            {
+                                <div class="cat-preview-placeholder">
+                                    <i class="bi bi-image"></i>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Estado PDF -->
+                        <div class="mb-4">
+                            @if (!string.IsNullOrEmpty(cat.Pdf))
+                            {
+                                <div class="d-flex align-items-center gap-2 p-3 rounded-3"
+                                     style="background:#f0fdf4; border:1px solid #bbf7d0;">
+                                    <i class="bi bi-file-earmark-pdf text-danger fs-5"></i>
+                                    <div class="flex-grow-1">
+                                        <div class="fw-semibold small text-success">PDF cargado</div>
+                                        <div class="text-muted" style="font-size:.75rem; word-break:break-all;">
+                                            @cat.Pdf
+                                        </div>
+                                    </div>
+                                    <a href="@cat.Pdf" target="_blank"
+                                       class="btn btn-sm btn-outline-success rounded-pill px-3">
+                                        Ver
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center gap-2 p-3 rounded-3"
+                                     style="background:#fef9c3; border:1px solid #fde68a;">
+                                    <i class="bi bi-exclamation-triangle text-warning fs-5"></i>
+                                    <div class="text-warning fw-semibold small">Sin PDF cargado</div>
+                                </div>
+                            }
+                        </div>
+
+                        <a asp-controller="Admin"
+                           asp-action="ActualizarCatalogo"
+                           asp-route-id="@cat.IdCatalogo"
+                           class="btn btn-primary rounded-pill px-4 w-100 fw-bold">
+                            <i class="bi bi-arrow-repeat me-2"></i>
+                            Actualizar Catálogo @cat.Tipo
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

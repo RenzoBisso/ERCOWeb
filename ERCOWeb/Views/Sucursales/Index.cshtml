@@ -20,6 +20,7 @@
                     }
                 }
             </div>
+
         </div>
 
         <div id="map" style="height:600px;" class="col-md-6 ps-md-5 rounded-4 shadow-lg border">
@@ -42,16 +43,13 @@
                 <h2 class="fw-bold mb-3">Zonas a las que llegamos</h2>
                 <p class="text-muted">Cubrimos una amplia red para estar siempre cerca tuyo.</p>
             </div>
-
-            <div class="row g-3 justify-content-center justify-content-md-start">
-                @foreach (var zona in Model.zonas)
-                {
-                    <div class="col-3">
-                        <div class="p-4 border rounded text-center custom-zona-card h-100 d-flex align-items-center justify-content-center shadow-sm bg-white">
-                            <span class="fw-semibold">@zona.Nombre</span>
-                        </div>
-                    </div>
-                }
+            <div class="mb-3">
+                <p class="fw-semibold">
+                    Zonas: @string.Join(", ", Model.zonas
+                                        .Where(z => !string.IsNullOrWhiteSpace(z.Nombre))
+                                        .Select(z => z.Nombre.Trim())
+                                        .OrderBy(nombre => nombre))
+                </p>
             </div>
 
             <div class="row mt-4">
