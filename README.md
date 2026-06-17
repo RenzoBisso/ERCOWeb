@@ -2,15 +2,12 @@
 
 Proyecto web desarrollado para **ERCO**, una distribuidora de productos de consumo masivo. El sistema consta de dos módulos principales: un **sitio público** con información institucional, catálogo de productos, marcas y promociones; y un **portal de administración** protegido que permite gestionar todo el contenido de la empresa desde un panel centralizado.
 
-> 🚧 Proyecto actualmente en desarrollo activo.
-
 ---
 
-## 🌐 Demo
+## 🌐 Pagina web
 
-> _Próximamente disponible online._
+[ERCO](https://www.ercosrl.com.ar/)
 
----
 
 ## ✨ Funcionalidades
 
