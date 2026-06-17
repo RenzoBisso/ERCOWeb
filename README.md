@@ -162,8 +162,7 @@ El archivo `Diagrama BD.drawio` en la raíz del proyecto contiene el diagrama en
 | Microsoft.AspNetCore.Identity.EntityFrameworkCore | 8.0.21 | Autenticación y roles |
 | Microsoft.EntityFrameworkCore.SqlServer | 8.0.25 | ORM con SQL Server |
 | Microsoft.EntityFrameworkCore.Tools | 8.0.25 | Migraciones |
-| MimeKit | 4.15.1 | Construcción de emails |
-| Resend | 0.5.0 | Servicio de envío de emails |
+
 
 ---
 
@@ -174,7 +173,7 @@ Estudiante de Licenciatura en Sistemas de Información — Universidad Nacional 
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/renzo-martín-bisso/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/RenzoBisso)
-[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat&logo=vercel&logoColor=white)](#)
+[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat&logo=vercel&logoColor=white)](https://portafolio-liart-iota.vercel.app/)
 
 ---
 
